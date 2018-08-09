@@ -1,0 +1,15 @@
+@import '../style/vars';
+@import '../style/neat/neat';
+.page-body {
+  margin-top: 32px;
+  height: 100%;
+}
+.layout {
+  height: 100%;
+}
+.page-content {
+  @include grid-column(10);
+  height: 100%;
+  
+  margin: 0 auto;
+}

@@ -1,0 +1,39 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+
+.login{
+    display: flex;
+    .sider{
+        height: 100%;
+        background-image: url(../../../img/login_background.png);
+        background-size: cover
+    }
+    .content{
+        background-color: #ffffff;
+        height: 100%;
+        padding: 0px 30px;
+        .logo{
+            margin-top: 90px;
+            text-align: center;
+        }
+        .form{
+            margin-top: $margin-base;
+            .additional{
+                .login-form-button{
+                    width: 100%;
+                }
+            }
+        }
+        .loginFooter{
+            position: absolute;
+            bottom: $margin-base;
+            text-align: left;
+            .bottom{
+                margin-top: $margin-base
+            }
+            .logoFont{
+                width: 100px
+            }
+        }
+    }
+}

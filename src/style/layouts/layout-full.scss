@@ -1,0 +1,139 @@
+@import '../neat/neat';
+
+body {
+    background-color: $brand-default-100;
+}
+.layout-full {
+  height: 100%;
+
+  .page {
+    @include grid-collapse($layout-grid);
+    @include grid-container($layout-grid);
+    // height: 100%;
+    // margin: 0 !important;
+    // padding: 0;
+    // background-color: transparent;
+
+    .page-content {
+        @include grid-column(14, $layout-grid);
+        @include grid-shift(1, $layout-grid);
+
+        >header{
+            font-size: $page-header-fontsite;
+            margin-bottom: $margin-min;
+            cursor: default;
+        }
+
+        .module-wapper {
+            background-color: $color-white;
+            border-radius: $radius-min;
+            .module-wapper-inner {
+                padding: $margin-base;
+
+                section {
+                    margin-top: $margin-base;
+                    border-bottom: 1px solid $gray-lightest;
+                    &:last-child {
+                        border-bottom: 0px !important;
+                    }
+                    &:first-child {
+                        margin-top: 0px;
+                    }
+                    >header {
+                        font-size: $section-header-fontsite;
+                        margin-bottom: $margin-min;
+                    }
+                    .section-grid-two {
+                        @include grid-collapse($section-grid-two);
+                        @include grid-container($section-grid-two);
+                        margin-bottom: $margin-base;
+                        .section-grid-two-column {
+                            border-right: 1px solid $gray-lightest;
+                            @include grid-column(1, $section-grid-two);
+                            &:last-child {
+                                border-right: 0px !important;
+                            }
+                        }
+                    }
+                    .section-grid-three {
+                        @include grid-collapse($section-grid-three);
+                        @include grid-container($section-grid-three);
+                        margin-bottom: $margin-base;
+                        .section-grid-three-one-column {
+                            border-right: 1px solid $gray-lightest;
+                            @include grid-column(1, $section-grid-three);
+                            &:last-child {
+                                border-right: 0px !important;
+                            }
+                        };
+                        .section-grid-three-two-column {
+                            border-right: 1px solid $gray-lightest;
+                            @include grid-column(2, $section-grid-three);
+                            &:last-child {
+                                border-right: 0px !important;
+                            }
+                        }
+                    }
+                    .section-grid-four {
+                        @include grid-collapse($section-grid-four);
+                        @include grid-container($section-grid-four);
+                        margin-bottom: $margin-base;
+                        .section-grid-four-one-column {
+                            border-right: 1px solid $gray-lightest;
+                            @include grid-column(1, $section-grid-four);
+                            &:last-child {
+                                border-right: 0px !important;
+                            }
+                        };
+                        .section-grid-four-three-column {
+                            border-right: 1px solid $gray-lightest;
+                            @include grid-column(3, $section-grid-four);
+                            &:last-child {
+                                border-right: 0px !important;
+                            }
+                        }
+                    }
+
+                }
+                .actions {
+
+                    display: flex;
+                    justify-content: flex-end;
+                    // align-items:center;
+
+                    button {
+                        margin-left: $margin-min;
+                    }
+                    .ant-btn-primary {
+                        color: #fff;
+                        background-color: $brand-primary;
+                        border-color: $brand-primary-400;
+                    }
+                }
+                .actions-space-between {
+
+                    display: flex;
+                    justify-content: space-between;
+                    // align-items:center;
+
+                    button {
+                        margin-left: $margin-min;
+                    }
+                    .ant-btn-primary {
+                        color: #fff;
+                        background-color: $brand-primary;
+                        border-color: $brand-primary-400;
+                    }
+                }
+            }
+        }
+
+    }
+  }
+}
+
+body{
+    > .layout-full {
+        padding-top: 0;
+    }
+}

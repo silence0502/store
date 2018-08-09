@@ -1,0 +1,74 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+
+$scene-grid:(
+  columns: 4,
+  gutter:6px,
+);
+.scene-list{
+    background-color: $color-white;
+    border-radius: $radius-min;
+    .scene-cont{
+        @include grid-collapse($scene-grid);
+        @include grid-container($scene-grid);
+        padding: 0 $padding-base;
+        min-height: 510px;
+        .scene-col{
+            @include grid-column(1, $scene-grid);
+            position: relative;
+            padding-left: $padding-base;
+            padding-right: $padding-base;
+            display: flex;
+            align-items:center;
+            margin-bottom: $margin-base;
+            &:last-child,&:nth-child(3n){
+                &:after{
+                    width: $userlist-col-separator-none;
+                }
+            }
+            &:nth-child(1),&:nth-child(2),&:nth-child(3){
+                border-top: none;
+            }
+        }
+    }
+    .scene-sort {
+        margin: 0 $margin-base;
+        padding: $margin-base 0;
+        border-bottom: 1px solid $gray-lightest;
+        overflow: hidden;
+        margin-bottom: $margin-base;
+        .title{
+            display: inline-block;
+            width: $userlist-title-w;
+            color: $gray;
+            // text-align: center;
+            text-indent: $userlist-text-indent;
+            margin-right: $margin-base;
+            font-size: $user-filter-row-fontsite;
+            border-right: $userlist-col-separator-width solid $gray-lighter;
+        }
+        button {
+            margin-right: $margin-base;
+        }
+        .btn-noborder {
+            border: 1px solid #fff;
+            &.ant-btn-clicked:after {
+                display: none;
+            }
+        }
+        .ant-input-affix-wrapper .ant-input {
+            border-radius: 4px;
+        }
+    }
+    .scene-page-outer{
+        padding:0 $margin-base;
+    }
+    .scene-page{
+        border-top: 1px solid $gray-lightest;
+        justify-content: center;
+        display: flex;
+        clear: both;
+        padding:$userlist-padding 0 $margin-min;
+        margin: 0 $userlist-padding;
+    }
+}

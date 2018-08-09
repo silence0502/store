@@ -1,0 +1,89 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+
+.scene-reply{
+    .ant-form-item {
+        .ant-input {
+            width: 72%;
+        }
+        .btn-area {
+            float: right;
+            width: 26%;
+            // text-align: right;
+            &.lt {
+                text-align: left;
+            }
+            button {
+                margin-left: 6%;
+            }
+            .anticon {
+                margin-left: 5%;
+                line-height: $scene-anticon-line-height;
+                font-size: $scene-anticon-font-size;
+                cursor: pointer;
+                &.anticon-close-circle-o {
+                    color: #f04134;
+                }
+            }
+        }
+    }
+}
+.ant-collapse{
+    &:last-child {
+        .ant-collapse-header {
+            border-bottom: 0;
+        }
+        // .ant-collapse-content {
+        //     &.ant-collapse-content-active {
+        //         border-bottom: 1px solid #d9d9d9;
+        //     }
+        // }
+    }
+    &>.scene-auto-reply {
+        .ant-collapse-header {
+            height: $scene-ant-collapse-header-height;
+            padding: $scene-ant-collapse-header-padding;
+            .arrow {
+                line-height: $scene-ant-collapse-header-height;
+            }
+        }
+        .ant-collapse-content {
+            padding: 0;
+            overflow: visible;
+            &.ant-collapse-content-active {
+                border-bottom: 1px solid #d9d9d9;
+            }
+        }
+        .ant-form-item {
+            .has-success.has-feedback:after, 
+            .has-warning.has-feedback:after, 
+            .has-error.has-feedback:after, 
+            .is-validating.has-feedback:after {
+                right: 28%;
+            }
+            .ant-input,.ant-select {
+                width: 72%;
+            }
+            .btn-area {
+                float: right;
+                width: 26%;
+                text-align: right;
+                &.lt {
+                    text-align: left;
+                }
+                button {
+                    margin-left: 6%;
+                }
+                .anticon {
+                    margin-left: 5%;
+                    line-height: $scene-anticon-line-height;
+                    font-size: $scene-anticon-font-size;
+                    cursor: pointer;
+                    &.anticon-close-circle-o {
+                        color: #f04134;
+                    }
+                }
+            }
+        }
+    }
+}

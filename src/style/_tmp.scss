@@ -1,0 +1,182 @@
+// Load variables
+@import '_vars';
+
+@import "neat/neat";
+@import "bourbon/bourbon";
+
+
+
+$sidebar-layout: (
+  columns: 3,
+  gutter: 40px,
+);
+
+$product-gallery: (
+  columns: 4,
+  gutter: 40px,
+);
+
+.sidebar-layout {
+//   @include grid-collapse($sidebar-layout);
+  @include grid-container($sidebar-layout);
+}
+
+.sidebar-layout__sidebar {
+
+  @include grid-visual;
+  @include grid-column(1, $sidebar-layout);
+}
+
+.sidebar-layout__main {
+  @include grid-column(2, $sidebar-layout);
+}
+
+.product-gallery {
+  @include grid-collapse($product-gallery);
+  @include grid-container($product-gallery);
+}
+
+.product-gallery__item {
+  @include grid-column(1, $product-gallery);
+  margin-bottom: 1rem;
+}
+
+
+.example__column--empty {
+    min-height: 20rem;
+}
+.example__column--empty-small {
+    min-height: 6rem;
+}
+
+.example__column--fancy {
+    background-image: linear-gradient(to bottom right, #21e9f4, #00d4ff);
+    // @include background-image(linear-gradient(hsla(0, 100%, 100%, 0.25) 0%, hsla(0, 100%, 100%, 0.08) 50%, transparent 50%),
+                        //    linear-gradient(#4e7ba3, darken(#4e7ba4, 10%)));
+    color: #fff;
+}
+.example__heading {
+    font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;
+    font-size: 1.42383em;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+.example__sub-heading {
+    font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;
+    font-size: 0.79012em;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 0;
+    text-align: center;
+}
+.example__column--spaced {
+    padding: 2em 0;
+}
+hr {
+    border-bottom: 4px solid #00d4ff;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    margin: 2em 0;
+}
+// 
+
+$example-2-grid: (
+  gutter: 2rem,
+  media: 800px,
+);
+
+.example-2,
+.example-2__row {
+  @include grid-container;
+}
+
+.example-2__heading {
+  @include grid-column;
+}
+
+.example-2__hero {
+  @include grid-column;
+  @include grid-media($example-2-grid) {
+    @include grid-column(6);
+    @include grid-push(3);
+  }
+}
+
+.example-2__rule {
+  @include grid-column;
+  @include grid-media($example-2-grid) {
+    @include grid-column(4);
+    @include grid-push(4);
+  }
+}
+
+.example-2__column-1 {
+  @include grid-column;
+  @include grid-media($example-2-grid) {
+    @include grid-column(2);
+    @include grid-push(2);
+  }
+}
+
+.example-2__column-2 {
+  @include grid-column;
+  @include grid-media($example-2-grid) {
+    @include grid-column(6);
+  }
+}
+
+
+.nab {
+  height: $navbar-height;
+}
+// @include keyframes(scale) {
+//   from {
+//     @include transform(scale(0.5));
+//   }
+//   to {
+//     @include transform(scale(1));
+//   }
+// }
+// @include keyframes(slide) {
+//   from {
+//     @include transform(translateX(0px));
+//   }
+//   to {
+//     @include transform(translateX(10px));
+//   }
+// }
+// .box {
+//     border-radius: 40px;
+//     border: 1px solid #2aa4b2;
+//     // box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+//     height: 40px;
+//     background-color: #8fdce5;
+//     // background-image: -webkit-linear-gradient(#8fdce5, #3dc3d1);
+//     // background-image: linear-gradient(#8fdce5, #3dc3d1);
+//     width: 40px;
+//     // @include animation-name(scale, slide);
+//     // @include animation(scale 1.0s ease-in, slide 2.0s ease);
+//     position: relative;
+
+// //   // The above outputs the same CSS as using independent, granular mixins.
+//   @include animation-name(scale);
+//   @include animation-duration(1s);
+//   @include animation-timing-function(ease);
+//   @include animation-direction(alternate-reverse);
+//   @include animation-iteration-count(infinite);    
+// }
+// // .box:hover {
+// //   // Animation shorthand works the same as the CSS3 animation shorthand
+// //   @include animation(scale 1.0s ease-in, slide 2.0s ease);
+
+// //   // The above outputs the same CSS as using independent, granular mixins.
+// //   @include animation-name(scale, slide);
+// //   @include animation-duration(2s);
+// //   @include animation-timing-function(ease);
+// //   @include animation-iteration-count(infinite);
+
+// //         position: relative;
+// // }

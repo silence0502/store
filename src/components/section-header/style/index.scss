@@ -1,0 +1,22 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+
+.section-header {
+    display: flex;
+    margin-bottom: $margin-base;
+    padding: $margin-base 0;
+    border-bottom: 1px solid $gray-lighter;
+    align-items: center;
+    justify-content: flex-end;
+    .title {
+        font-size: 16px;
+        color: $gray;
+    }
+    .btn-box {
+        flex: 1;
+        text-align: right;
+        .ant-btn {
+            margin-left: $margin-base;
+        }
+    }
+}

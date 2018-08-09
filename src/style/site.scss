@@ -1,0 +1,24 @@
+// Load variables
+@import '_vars';
+
+@import "neat/neat";
+@import "bourbon/bourbon";
+@import 'normalize';
+
+
+// Layouts
+// -------------------------------
+@import 'layouts/layout-full';
+
+
+// TMP
+.example__column--fancy {
+    background-image: linear-gradient(to bottom right, #21e9f4, #00d4ff);
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    @include align-items(center);
+    @include display(flex);
+    @include flex-direction(row);
+    @include justify-content(center);
+}

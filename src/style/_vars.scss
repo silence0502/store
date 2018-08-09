@@ -1,0 +1,328 @@
+@import 'var-colors';
+// Colors
+// ======
+//
+$transparent:       rgba(0, 0, 0, 0);
+$primary-color: #00b388;
+$color-black:       #000000;
+$color-white:       #ffffff;
+$color-navbar-green:       #526979;
+
+$color-red:         $color-red-600 !default;
+$color-pink:        $color-pink-600 !default;
+$color-purple:      $color-purple-600 !default;
+$color-indigo:      $color-indigo-600 !default;
+$color-blue:        $color-blue-600 !default;
+$color-cyan:        $color-cyan-600 !default;
+$color-teal:        $color-teal-600 !default;
+$color-green:       $color-green-600 !default;
+$color-light-green: $color-light-green-600 !default;
+$color-yellow:      $color-yellow-600 !default;
+$color-orange:      $color-orange-600 !default;
+$color-brown:       $color-brown-600 !default;
+$color-grey:        $color-grey-600 !default;
+$color-blue-grey:   $color-blue-grey-600 !default;
+
+// Primary color
+//
+$color-primary: 'blue' !default;
+
+$color-primary-list: map-get($color-lists, $color-primary) !default;
+
+$color-primary-50: map-get($color-primary-list, "50") !default;
+$color-primary-100: map-get($color-primary-list, "100") !default;
+$color-primary-200: map-get($color-primary-list, "200") !default;
+$color-primary-300: map-get($color-primary-list, "300") !default;
+$color-primary-400: map-get($color-primary-list, "400") !default;
+$color-primary-500: map-get($color-primary-list, "500") !default;
+$color-primary-600: map-get($color-primary-list, "600") !default;
+$color-primary-700: map-get($color-primary-list, "700") !default;
+$color-primary-800: map-get($color-primary-list, "800") !default;
+$color-primary-900: map-get($color-primary-list, "900") !default;
+
+
+// Gray color
+//
+$gray-base:     $color-grey-900;
+$gray-darkest:  $color-grey-800;
+$gray-darker:   $color-grey-700;
+$gray-dark:     $color-grey-600;
+$gray:          $color-grey-500;
+$gray-light:    $color-grey-400;
+$gray-lighter:  $color-grey-300;
+$gray-lightest: $color-grey-200;
+
+$inverse:               $color-white;
+
+$brand-inverse:         $gray-dark;
+
+// Brand color
+//
+$brand-default:         $gray-lighter;
+$brand-default-hover:   $gray-lightest;
+$brand-default-active:  $gray-light;
+$brand-default-100:     $color-grey-100;
+
+$brand-primary:         $color-primary-500;
+$brand-primary-hover:   $color-primary-400;
+$brand-primary-active:  $color-primary-600;
+$brand-primary-400:     $color-primary-400;
+$brand-primary-100:     $color-primary-100;
+
+$brand-success:         $color-green-500;
+$brand-success-hover:   $color-green-400;
+$brand-success-active:  $color-green-600;
+$brand-success-400:     $color-green-400;
+$brand-success-100:     $color-green-100;
+
+$brand-info:            $color-cyan-500;
+$brand-info-hover:      $color-cyan-400;
+$brand-info-active:     $color-cyan-600;
+$brand-info-400:        $color-cyan-400;
+$brand-info-100:        $color-cyan-100;
+
+$brand-warning:         $color-orange-500;
+$brand-warning-hover:   $color-orange-400;
+$brand-warning-active:  $color-orange-600;
+$brand-warning-400:     $color-orange-400;
+$brand-warning-100:     $color-orange-100;
+
+$brand-danger:          $color-red-500;
+$brand-danger-hover:    $color-red-400;
+$brand-danger-active:   $color-red-600;
+$brand-danger-400:      $color-red-400;
+$brand-danger-100:      $color-red-100;
+
+$brand-dark:            $gray-darker;
+$brand-dark-hover:      $gray-dark;
+$brand-dark-active:     $gray-darkest;
+$brand-dark-100:        $color-blue-100;
+
+$color-tab-focus:       rgba($brand-primary, (60/100));
+
+// Text color
+//
+$title-color:           $gray-darkest;
+$subtitle-color:        $gray-darker;
+$text-color:            $gray-dark;
+$prompt-color:          $gray;
+
+// Status color
+//
+$active-color-base:     $color-primary-700;
+$normal-color-base:     $color-primary-600;
+$hover-color-base:      $color-primary-500;
+$bg-color-base:         $gray-lightest;
+$disabled-color-base:   $gray-light;
+
+// box shadow
+$box-shadow-1: 0 1px 4px 0 rgba(0,0,0,.1);
+$box-shadow-2: 0 3px 7px 0 rgba(0, 0, 0, 0.2);
+$box-shadow-3: 0 5px 8px 0 rgba(0, 0, 0, 0.24);
+$box-shadow-4: 0 7px 10px 0 rgba(0, 0, 0, 0.22);
+$box-shadow-5: 0 9px 15px 0 rgba(0, 0, 0, 0.2);
+
+// Z-index master list
+
+$margin-base:                       15px;
+$margin-double:                     30px;
+$margin-min:                        8px;
+
+$radius-base:                       15px;
+$radius-double:                     30px;
+$radius-min:                        0px;    // 圆角变直角
+
+$padding-base:                       15px;
+$padding-double:                     30px;
+$padding-min:                        8px;
+
+
+//== Layout
+$layout-grid: (
+  columns: 16,
+  gutter: 0px,
+);
+
+//== Site Navbar
+$navbar-grid: (
+  columns: 12,
+  gutter: 0px,
+);
+$navbar-height:                     50px;
+$navbar-menu-logo-height:           $navbar-height;
+$navbar-menu-logo-width:            150px;
+$navbar-menu-logo-fontsite:         18px;
+$navbar-menu-item-height:           $navbar-height;
+$navbar-menu-item-width:            120px;
+$navbar-menu-item-fontsite:         16px;
+$navbar-menu-avatar-height:         $navbar-height;
+$navbar-menu-avatar-width:          $navbar-height;
+
+//== Tabbar
+$tabbar-height:                     50px;
+$tabbar-outer-height:               52px;
+$tabbar-item-height:                $tabbar-height;
+$tabbar-item-width:                 100px;
+$tabbar-item-fontsite:              14px;
+
+//== Page Main
+$page-header-fontsite:              20px;
+$page-content-margin:               15px;
+
+//== section
+$section-grid-two: (
+  columns: 2,
+  gutter: $margin-min,
+);
+$section-grid-three: (
+  columns: 3,
+  gutter: $margin-min,
+);
+$section-grid-four: (
+  columns: 4,
+  gutter: $margin-min,
+);
+$section-grid-eight: (
+  columns: 8,
+  gutter: $margin-min,
+);
+$section-grid-five: (
+  columns: 5,
+  gutter: $margin-min,
+);
+$section-header-fontsite:           16px;
+//== avatar
+$avatar-upload-five: (
+  columns: 5,
+  gutter: 0px,
+);
+$avatar-upload-content-four: (
+  columns: 4,
+  gutter: 0px,
+);
+
+//== scene-auto-reply
+$scene-ant-collapse-header-height:  64px;
+$scene-ant-collapse-header-padding: 16px 0;
+$scene-anticon-line-height:         32px;
+$scene-anticon-font-size:           20px;
+$scene-auto-repaly-info-padding:    15px 32px; 
+
+//ucenter-header
+$ucenter-header-min-height:                 40px;
+$ucenter-header-img-width:                  68px;
+$ucenter-header-img-height:                 68px;
+$ucenter-header-font-size-14:               14px;
+$ucenter-header-font-size-18:               18px;
+
+//== scenelist
+$scenelist-grid:(
+  columns: 3,
+  gutter:8px,
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 可删掉
+//== user filter
+$user-filter-row-key-width:         $tabbar-item-width;
+$user-filter-row-fontsite:          14px;
+
+//==user-card
+$user-card-img-width:                      0 0 60px;
+$user-card-img-height:                     60px;
+$user-card-img-border-radius:              50%;
+$user-card-state-i:                        4px;
+
+//==access-list
+$access-row-padding:                15px 0;
+$access-authority-padding-top:      25px;
+$access-list-grid-line-height:      25px;
+$access-list-grid-height:           25px;
+$access-list-height:                350px;
+$access-select-width:               200px;
+$access-list-fontsite:              14px;
+$access-arrow-with:                 8px;
+$access-arrow-height:                 8px;
+
+$access-grid: (
+  columns: 12,
+  gutter: 0px,
+);
+
+//== userlist
+$userlist-grid: (
+  columns: 3,
+  gutter: 0px,
+);
+$userlist-padding:15px;
+// $userlist-padding:20px;
+$userlist-col-height:170px;
+$userlist-col-separator-width:1px;
+$userlist-col-separator-top:48px;
+$userlist-col-separator-none:0px;
+$userlist-col-separator-height:70px;
+$userlist-title-w:87px;
+$userlist-text-indent:20px;
+
+//== org-info
+$org-info-grid-two: (
+  columns: 2,
+  gutter: 0px,
+);
+$org-info-grid-five: (
+  columns: 5,
+  gutter: 0px,
+);
+$org-info-tab-height:                 400px;
+$orginfo-col-separator-top:             34px;
+
+
+//== user form
+$user-form-btnchoose-border-radius:4px;
+$user-form-bt-size:               15px;
+$user-form-fontsize:               14px;
+
+//== org form
+$org-form-fontsize:              14px;
+$org-form-fontsize-text:         13px;
+$org-form-paddingleft:           7px;
+
+//== device form
+$device-form-fontsize:               14px;
+
+//== ucenter
+$ucenter-password-grid:(
+  columns: 4,
+  gutter: 0px,
+);
+
+//== login
+$login-box-width:                        400px;
+$login-form-item-e-height:               38px;
+
+
+// history-card
+$history-card-margin:         20px;
+$history-card-fontsize:         14px;
+$history-card-version-fontsize: 16px;
+$history-card-version-lineheight: 42px;
+$history-card-cell-w: 200px;

@@ -1,0 +1,35 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+
+.scene-auto-reply-info {
+    .auto-reply-row {
+        line-height: $scene-anticon-line-height;
+    }
+    .key-word-txt {
+        margin-right: $margin-min;
+    }
+    .scene-auto-reply-keys{
+        border: 1px solid #ccc;
+        padding:3px 20px;
+        margin:2px 10px 0 0;
+        border-radius: 5px;
+    }
+    .answer {
+        display: block;
+        margin-top: $margin-base;
+    }
+    .pic {
+        width: 120px;
+        height: 120px;
+        img {
+            width: 100%;
+        }
+    }
+    .ant-collapse-content {
+        .ant-collapse-content-box{
+             padding-left: 16px;
+        }
+    }
+}
+
+

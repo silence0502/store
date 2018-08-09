@@ -1,0 +1,51 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+
+.ant-collapse{
+    &>.scene-auto-reply {
+        .ant-collapse-header {
+            height: $scene-ant-collapse-header-height;
+            padding: $scene-ant-collapse-header-padding;
+            .arrow {
+                line-height: $scene-ant-collapse-header-height;
+            }
+        }
+        .ant-collapse-content {
+            padding: $scene-ant-collapse-header-padding;
+            &.ant-collapse-content-active {
+                border-bottom: 1px solid #d9d9d9;
+            }
+        }
+        .ant-form-item {
+            .has-success.has-feedback:after, 
+            .has-warning.has-feedback:after, 
+            .has-error.has-feedback:after, 
+            .is-validating.has-feedback:after {
+                right: 30%;
+            }
+            .ant-input {
+                width: 72%;
+            }
+            .btn-area {
+                float: right;
+                width: 26%;
+                button {
+                    margin-left: 6%;
+                }
+                .anticon {
+                    margin-left: 5%;
+                    line-height: $scene-anticon-line-height;
+                    font-size: $scene-anticon-font-size;
+                    cursor: pointer;
+                    &.anticon-close-circle-o {
+                        color: #f04134;
+                        &.disabled {
+                            opacity: .5;
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
