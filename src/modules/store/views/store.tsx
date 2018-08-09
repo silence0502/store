@@ -67,13 +67,30 @@ class Store extends React.PureComponent<StoreProps, any> {
         });
     }
 
-    renderModal(id) {
+    showModal(id) {
         this.setState({
             visible: true,
             _data: data[id]
         })
     }
 
+    renderModal() {
+        let { _data } = this.state
+        return (
+            <Row gutter={15}>
+                <Col className="gutter-row" span={12}>
+                    <div className="gutter-box">
+                        <img alt="example" src={_data.images} style={{ width: '100%', height: '100%' }} />
+                    </div>
+                </Col>
+                <Col className="gutter-row" span={12}>
+                    <div className="gutter-box">
+                        <p>12345677</p>
+                    </div>
+                </Col>
+            </Row>
+        )
+    }
     componentDidMount() {
 
     }
@@ -88,18 +105,16 @@ class Store extends React.PureComponent<StoreProps, any> {
         return (
             data.map((item, index) => {
                 return <Col className="gutter-row" span={6}>
-                    <div className="gutter-box" style={{ marginBottom: '10px' }}><StoreCard data={item} renderModal={this.renderModal.bind(this)} /></div>
+                    <div className="gutter-box" style={{ marginBottom: '10px' }}><StoreCard data={item} renderModal={this.showModal.bind(this)} /></div>
                 </Col>
             })
         )
     }
     renderList() {
         return (
-            <div>
-                <Row gutter={15}>
-                    {this.renderCard()}
-                </Row>
-            </div>
+            <Row gutter={15}>
+                {this.renderCard()}
+            </Row>
         )
     }
     render() {
@@ -121,15 +136,14 @@ class Store extends React.PureComponent<StoreProps, any> {
                     <Modal
                         title=""
                         bodyStyle={{
-                            height: '400px'
+                            height: '100%'
                         }}
                         width={700}
                         visible={this.state.visible}
                         onOk={this.handleOk}
                         onCancel={this.handleCancel}
                     >
-                        <img alt="example" src={_data.images} style={{ width: '200px', height: '200px' }} />
-                        <p>Some contents...</p>
+                        {this.renderModal()}
                     </Modal>
                 </div>
             </div>
