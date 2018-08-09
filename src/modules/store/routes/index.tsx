@@ -25,7 +25,7 @@ export default class Routes extends React.Component<RoutesProps, any> {
         return (
             <div>
                 <Switch>
-                    <Route path={`${match.url}`} exact component={Home} />\
+                    <Route path={`${match.url}`} exact component={Home} />
                 </Switch>
             </div>
         );

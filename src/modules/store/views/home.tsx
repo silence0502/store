@@ -5,7 +5,11 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Store from './store'
 
-import { Row, Col, Breadcrumb, Icon, Tabs, Button, Input, Menu } from 'antd';
+import { Tree } from 'antd';
+
+const TreeNode = Tree.TreeNode;
+
+
 import '../style/index'
 
 
@@ -35,7 +39,21 @@ class Home extends React.PureComponent<HomeProps, any> {
     }
     renderLeftNav() {
         return (
-            <div>left</div>
+            <Tree
+                defaultExpandedKeys={['0-0-0', '0-0-1']}
+                defaultSelectedKeys={['0-0-0', '0-0-1']}
+                defaultCheckedKeys={['0-0-0', '0-0-1']}
+            >
+                <TreeNode title="parent 1" key="0-0">
+                    <TreeNode title="parent 1-0" key="0-0-0" >
+                        <TreeNode title="leaf" key="0-0-0-0" />
+                        <TreeNode title="leaf" key="0-0-0-1" />
+                    </TreeNode>
+                    <TreeNode title="parent 1-1" key="0-0-1">
+                        <TreeNode title={<span style={{ color: '#1890ff' }}>sss</span>} key="0-0-1-0" />
+                    </TreeNode>
+                </TreeNode>
+            </Tree>
         )
     }
     render() {
@@ -46,7 +64,7 @@ class Home extends React.PureComponent<HomeProps, any> {
                     split="vertical"
                     minSize={100}
                     maxSize={300}
-                    defaultSize={300}
+                    defaultSize={250}
                 >
                     <div className="leftBg">
                         {this.renderLeftNav()}
