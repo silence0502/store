@@ -57,25 +57,24 @@ class Home extends React.PureComponent<HomeProps, any> {
         )
     }
     render() {
-        let { match } = this.props
         return (
             <div className='store'>
                 <SplitPane
                     split="vertical"
                     minSize={100}
                     maxSize={300}
+                    style={{ position: 'relative' }}
                     defaultSize={250}
                 >
-                    <div className="leftBg">
+                    <div className="leftBg" >
                         {this.renderLeftNav()}
                     </div>
-                    <div className='main'>
+                    <div className='main' style={{ height: window.innerHeight - 104, overflowY: 'scroll' }}>
                         <Store />
                     </div>
                 </SplitPane>
             </div>
         )
-
     }
 }
 
