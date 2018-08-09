@@ -68,9 +68,12 @@ class HomeCls extends React.PureComponent<HomeProps, any> {
     }
     render() {
         let logo = require('../../../img/logo2.png');
+        let bg = require('../../../img/login_background.png');
         return (
             <div className="login" style={{ height: window.innerHeight }}>
-                <div className="sider" style={{ width: window.innerWidth - 400 + 'px' }} />
+                <div className="sider" style={{ width: window.innerWidth - 400 + 'px' }}>
+                    <img src={bg} style={{ width: window.innerWidth - 400 + 'px', height: window.innerHeight }} />
+                </div>
                 <div className="content" style={{ width: '400px' }}>
                     <div className="logo">
                         <img src={logo} className="logoFont" />

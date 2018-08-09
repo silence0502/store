@@ -9,7 +9,7 @@ var config = {
     host: '139.199.126.203',
     port: 22,
     auth: 'hpe',
-    remotePath: '/opt/web/isee'
+    remotePath: '/opt/web/webapp/store'
   },
   webpack: {
     path: {

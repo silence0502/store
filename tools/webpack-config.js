@@ -81,7 +81,7 @@ module.exports = type => {
       './src/style/antd.less'
     ]),
     output: {
-      publicPath: '/',
+      publicPath: '',
       filename: isDist
         ? `bundle/${pkgJson.version}/[name].[hash].js`
         : `bundle/${pkgJson.version}/[name].js`,
