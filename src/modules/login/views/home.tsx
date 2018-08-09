@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Icon, Form, Input, Button, Checkbox } from 'antd';
 require('../style/index.scss');
-import { FormComponentProps } from 'antd/lib/form/Form';
+
 const FormItem = Form.Item;
 export interface HomeProps {
     actions?: any;
@@ -18,7 +18,7 @@ class HomeCls extends React.PureComponent<HomeProps, any> {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.props.history.push(`scene`)
+                this.props.history.push(`store`)
             }
         });
     };
@@ -66,15 +66,6 @@ class HomeCls extends React.PureComponent<HomeProps, any> {
             </div>
         );
     }
-    renderFooter() {
-        let logoFont = require('../../../img/logo-dark.svg');
-        return (
-            <div>
-                <img src={logoFont} className="logoFont" />
-                <div className="bottom">©2018 Hewlett Packard EnterPrise Development LP.</div>
-            </div>
-        );
-    }
     render() {
         let logo = require('../../../img/logo2.png');
         return (
@@ -85,7 +76,6 @@ class HomeCls extends React.PureComponent<HomeProps, any> {
                         <img src={logo} className="logoFont" />
                     </div>
                     {this.renderForm()}
-                    <div className="loginFooter">{this.renderFooter()}</div>
                 </div>
             </div>
         );

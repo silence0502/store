@@ -52,7 +52,7 @@ class SiteLayout extends React.Component<SiteLayoutProps, any> {
   }
   render() {
     let activeKey: any = []
-    let fun_permissions: any = [{ route: 'scene', name: '场景管理' }, { route: 'device', name: '设备管理' }, { route: 'statistics', name: '数据统计' }];
+    let fun_permissions: any = [{ route: 'store', name: '图像' }, { route: 'statistics', name: '统计' }];
     let { pathname } = this.props.location;
     _.map(fun_permissions, fun => {
       if (matchPath(pathname, { path: `/${fun.route}` }) != null) {
@@ -67,8 +67,8 @@ class SiteLayout extends React.Component<SiteLayoutProps, any> {
           fun_permissions={fun_permissions}
           logout={this.logout.bind(this)}
         />
-        <Layout className="page-body">
-          <Content className="page-content">{this.props.children}</Content>
+        <Layout className="">
+          <Content className="">{this.props.children}</Content>
         </Layout>
       </Layout>
     );
