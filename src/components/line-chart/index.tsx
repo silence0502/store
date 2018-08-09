@@ -35,7 +35,8 @@ export default class LineChart extends React.PureComponent<LineChartProps, any> 
         if (!oldColors[0].radialGradient && oldColors[0] !== '#00b388') {
             let colors = ['#00b388']
             Highcharts.setOptions({
-                colors: colors.concat(oldColors)
+                colors: colors.concat(oldColors),
+                maxHeight:'100px'
             });
         }
 
@@ -79,12 +80,12 @@ export default class LineChart extends React.PureComponent<LineChartProps, any> 
                     color: '#FFFFFF',
                     align: 'right',
                     format: '{point.y:.1f}', // :.1f 为保留 1 位小数
-                    y: 10
+                    y: 10,
                 }
             }],
             credits: {
                 enabled: false
-            }
+            },
         }
         this.chart = Highcharts.chart(this.line, this.options);
     }
@@ -95,7 +96,7 @@ export default class LineChart extends React.PureComponent<LineChartProps, any> 
                 type: 'image/png',
                 filename: this.props.data.title,
                 sourceWidth: 400,
-                sourceHeight: 280
+                sourceHeight: 200
             }
         );
     }
