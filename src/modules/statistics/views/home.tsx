@@ -18,7 +18,7 @@ class Home extends React.Component<any, any> {
 
         };
     }
-     renderLeftNav() {
+    renderLeftNav() {
         return (
             <Tree
                 defaultExpandedKeys={['0-0-0', '0-0-1']}
@@ -38,19 +38,20 @@ class Home extends React.Component<any, any> {
         )
     }
     render() {
-            let { match } = this.props
+        let { match } = this.props
         return (
             <div className='charts'>
                 <SplitPane
                     split="vertical"
                     minSize={100}
                     maxSize={500}
+                    style={{ position: 'relative' }}
                     defaultSize={250}
                 >
                     <div className="leftBg">
                         {this.renderLeftNav()}
                     </div>
-                    <div className='main'>
+                    <div className='main' style={{ height: window.innerHeight - 104, overflowY: 'scroll' }}>
                         <Charts />
                     </div>
                 </SplitPane>
