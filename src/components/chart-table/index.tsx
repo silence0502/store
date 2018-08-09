@@ -24,7 +24,7 @@ export default class ChartTable extends React.PureComponent<ChartTableProps, any
 
   render(){
     return(
-      <Table columns={this.props.columns} dataSource={this.props.data} />
+      <Table columns={this.props.columns} dataSource={this.props.data} pagination={false}/>
     )
   }
 }

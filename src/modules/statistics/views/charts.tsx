@@ -85,48 +85,54 @@ class Home extends React.Component<any, any> {
 
         const data = [{
             key: '1',
-            one: 'node_1',
-            two: 'null',
+            time:'node_1',
+            one: '--',
+            two: '--',
             three:'--',
             four:'--',
             five:'--',
             seven:'--'
             }, {
             key: '2',
-            one: 'node_2',
-            two: 'null',
+            time:'node_2',
+            one: '--',
+            two: '--',
             three:'--',
             four:'--',
             five:'--',
             seven:'--'
             }, {
             key: '3',
+            time:'node_3',
             one: '--',
-            two: 'null',
+            two: '--',
             three:'--',
             four:'--',
             five:'--',
             seven:'--'
             },{
             key: '4',
+            time:'node_4',
             one: '--',
-            two: 'null',
+            two: '--',
             three:'--',
             four:'--',
             five:'--',
             seven:'--'
             },{
             key: '5',
+            time:'node_5',
             one: '--',
-            two: 'null',
+            two: '--',
             three:'--',
             four:'--',
             five:'--',
             seven:'--'
             },{
             key: '6',
+            time:'node_6',
             one: '--',
-            two: 'null',
+            two: '--',
             three:'--',
             four:'--',
             five:'--',
@@ -162,7 +168,7 @@ class Home extends React.Component<any, any> {
                     </Col>
                 </Row>
                 <Row>
-                    <Col className="gutter-row" span={20} offset={1}>
+                    <Col className="gutter-row" span={21} offset={1}>
                         <div className="container" style={_style}>
                             <SectionHeader title="设备添加统计"></SectionHeader>
                             <div >
