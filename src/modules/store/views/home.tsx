@@ -35,36 +35,27 @@ class Home extends React.PureComponent<HomeProps, any> {
     }
     renderLeftNav() {
         return (
-            <Menu mode="inline">
-                <Menu.Item key="user">
-                    <Icon type="solution" />用户管理
-                    </Menu.Item>
-                <Menu.Item key="log">
-                    <Icon type="form" />日志管理
-                    </Menu.Item>
-            </Menu>
+            <div>left</div>
         )
     }
     render() {
         let { match } = this.props
         return (
-            <Row className='store'>
+            <div className='store'>
                 <SplitPane
                     split="vertical"
                     minSize={100}
                     maxSize={300}
-                    defaultSize={200}
+                    defaultSize={300}
                 >
-                    <div className="sideBar">
+                    <div className="leftBg">
                         {this.renderLeftNav()}
                     </div>
                     <div className='main'>
-                        <Switch>
-                            <Route path={`${match.url}/home`} exact component={Store} />}
-                        </Switch>
+                        <Store />
                     </div>
                 </SplitPane>
-            </Row>
+            </div>
         )
 
     }

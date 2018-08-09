@@ -67,8 +67,8 @@ class SiteLayout extends React.Component<SiteLayoutProps, any> {
           fun_permissions={fun_permissions}
           logout={this.logout.bind(this)}
         />
-        <Layout className="">
-          <Content className="">{this.props.children}</Content>
+        <Layout className="page-body">
+          <Content className="page-content">{this.props.children}</Content>
         </Layout>
       </Layout>
     );

@@ -26,7 +26,7 @@ class Store extends React.PureComponent<StoreProps, any> {
     }
     render() {
         return (
-            <div>1234</div>
+            <div>right</div>
         )
 
     }
