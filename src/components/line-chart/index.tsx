@@ -36,7 +36,7 @@ export default class LineChart extends React.PureComponent<LineChartProps, any> 
             let colors = ['#00b388']
             Highcharts.setOptions({
                 colors: colors.concat(oldColors),
-                maxHeight:'100px'
+                maxHeight: '100px'
             });
         }
 
@@ -60,7 +60,7 @@ export default class LineChart extends React.PureComponent<LineChartProps, any> 
             yAxis: {
                 min: 0,
                 title: {
-                    text: '设备数量（台）'
+                    text: '数量（单位）'
                 },
                 lineColor: 'red'
             },
@@ -69,7 +69,7 @@ export default class LineChart extends React.PureComponent<LineChartProps, any> 
                 enabled: false
             },
             tooltip: {
-                pointFormat: '设备数量: <b>{point.y:.1f} 台</b>'
+                pointFormat: '数量: <b>{point.y:.1f} （单位）</b>'
             },
             series: [{
                 name: '总人口',

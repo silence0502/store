@@ -85,7 +85,7 @@ class Store extends React.PureComponent<StoreProps, any> {
                 </Col>
                 <Col className="gutter-row" span={12}>
                     <div className="gutter-box">
-                        <p>12345677</p>
+                        <p>这是对该图片的描述</p>
                     </div>
                 </Col>
             </Row>

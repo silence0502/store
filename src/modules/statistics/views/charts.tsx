@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Row, Col,  Divider, Icon } from 'antd'
+import { Button, Row, Col, Divider, Icon } from 'antd'
 import LineChart from '../../../components/line-chart/index'
 import PieChart from '../../../components/pie-chart/index'
 import SectionHeader from '../../../components/section-header/index'
@@ -40,106 +40,106 @@ class Home extends React.Component<any, any> {
     renderPie() {
         let data = {
             chartData: [
-                ['生活', 25],
-                ['娱乐', 35],
-                ['信息查询', 30],
-                ['学习', 9],
-                ['其他', 1]
+                ['数据一', 25],
+                ['数据二', 35],
+                ['数据三', 30],
+                ['数据四', 9],
+                ['数据五', 1]
             ],
-            title: '场景占比',
+            title: '数据占比',
             updated_at: '2018-05-31'
         }
         return <PieChart data={data} />
     }
-    renderTable(){
+    renderTable() {
         const columns = [{
-        title: '时间',
-        dataIndex: 'time',
-        key: 'time',
+            title: '时间',
+            dataIndex: 'time',
+            key: 'time',
         }, {
-        title: '2018-01-01',
-        dataIndex: 'one',
-        key: 'age',
+            title: '2018-01-01',
+            dataIndex: 'one',
+            key: 'age',
         }, {
-        title: '2018-02-01',
-        dataIndex: 'two',
-        key: 'address',
+            title: '2018-02-01',
+            dataIndex: 'two',
+            key: 'address',
         }, {
-        title: '2018-03-01',
-        dataIndex:'three',
-        key: 'three',
+            title: '2018-03-01',
+            dataIndex: 'three',
+            key: 'three',
         }, {
-        title: '2018-04-01',
-        dataIndex:'four',
-        key: 'four',
+            title: '2018-04-01',
+            dataIndex: 'four',
+            key: 'four',
         }, {
-        title: '2018-05-01',
-        dataIndex:'five',
-        key: 'five',
+            title: '2018-05-01',
+            dataIndex: 'five',
+            key: 'five',
         }, {
-        title: '2018-07-01',
-        dataIndex:'seven',
-        key: 'seven',
+            title: '2018-07-01',
+            dataIndex: 'seven',
+            key: 'seven',
         }
-    ];
+        ];
 
         const data = [{
             key: '1',
-            time:'node_1',
+            time: 'node_1',
             one: '--',
             two: '--',
-            three:'--',
-            four:'--',
-            five:'--',
-            seven:'--'
-            }, {
+            three: '--',
+            four: '--',
+            five: '--',
+            seven: '--'
+        }, {
             key: '2',
-            time:'node_2',
+            time: 'node_2',
             one: '--',
             two: '--',
-            three:'--',
-            four:'--',
-            five:'--',
-            seven:'--'
-            }, {
+            three: '--',
+            four: '--',
+            five: '--',
+            seven: '--'
+        }, {
             key: '3',
-            time:'node_3',
+            time: 'node_3',
             one: '--',
             two: '--',
-            three:'--',
-            four:'--',
-            five:'--',
-            seven:'--'
-            },{
+            three: '--',
+            four: '--',
+            five: '--',
+            seven: '--'
+        }, {
             key: '4',
-            time:'node_4',
+            time: 'node_4',
             one: '--',
             two: '--',
-            three:'--',
-            four:'--',
-            five:'--',
-            seven:'--'
-            },{
+            three: '--',
+            four: '--',
+            five: '--',
+            seven: '--'
+        }, {
             key: '5',
-            time:'node_5',
+            time: 'node_5',
             one: '--',
             two: '--',
-            three:'--',
-            four:'--',
-            five:'--',
-            seven:'--'
-            },{
+            three: '--',
+            four: '--',
+            five: '--',
+            seven: '--'
+        }, {
             key: '6',
-            time:'node_6',
+            time: 'node_6',
             one: '--',
             two: '--',
-            three:'--',
-            four:'--',
-            five:'--',
-            seven:'--'
-            }];
+            three: '--',
+            four: '--',
+            five: '--',
+            seven: '--'
+        }];
 
-        return(
+        return (
             <ChartTable columns={columns} data={data} />
         )
     }
@@ -150,17 +150,17 @@ class Home extends React.Component<any, any> {
             <div>
                 <Row gutter={16} style={{ display: 'flex', alignItems: 'stretch' }}>
                     <Col className="gutter-row" span={9} offset={1}>
-                         <div className="container" style={_style}> 
-                            <SectionHeader title="场景类型分布"></SectionHeader>
+                        <div className="container" style={_style}>
+                            <SectionHeader title="饼图统计"></SectionHeader>
                             <div>
                                 {this.renderPie()}
                             </div>
                         </div>
                     </Col>
-                    
+
                     <Col className="gutter-row" span={10} offset={2}>
                         <div className="container" style={_styles}>
-                            <SectionHeader title="设备添加统计"></SectionHeader>
+                            <SectionHeader title="柱图统计"></SectionHeader>
                             <div >
                                 {this.renderLine()}
                             </div>
@@ -170,7 +170,7 @@ class Home extends React.Component<any, any> {
                 <Row>
                     <Col className="gutter-row" span={21} offset={1}>
                         <div className="container" style={_style}>
-                            <SectionHeader title="设备添加统计"></SectionHeader>
+                            <SectionHeader title="表格统计"></SectionHeader>
                             <div >
                                 {this.renderTable()}
                             </div>
