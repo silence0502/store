@@ -120,7 +120,7 @@ class Store extends React.PureComponent<StoreProps, any> {
     render() {
         let { _data } = this.state
         return (
-            <div>
+            <div style={{ padding: '10px' }}>
                 <SectionHeader title='图像列表'></SectionHeader>
                 <div style={{ width: '100%', overflow: 'hidden' }}>
                     <Search

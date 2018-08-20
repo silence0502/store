@@ -1,46 +1,164 @@
 @import "~antd/lib/style/themes/default.less";
-.store {
-    // height: 100%;
-    .main {
-        margin: 20px;
-        background: #fff;
-        border-radius: 4px;
-        overflow: hidden;
-        // height: 100%;
-        padding: 20px;
-        .header {
-            padding: 20px;
-            border-bottom: 1px solid #e2e4e9;
-            .title {
-                margin-bottom: 8px;
-                font-size: 20px;
-                color: #525459;
-                font-weight: normal;
+@import "../../../style/index.less";
+
+.resource {
+  height: 100%;
+  .main {
+    margin: 20px;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    .header {
+      padding: 20px;
+      border-bottom: 1px solid #e2e4e9;
+      .title {
+        margin-bottom: 8px;
+        font-size: 20px;
+        color: #525459;
+        font-weight: normal;
+      }
+    }
+    .legend{
+      display: flex;
+      justify-content: flex-end;
+      margin: 0 20px 10px 0;
+      div{
+        display: flex;
+        align-items: center;
+        span{
+          width: 10px;
+          height: 10px;
+          display: block;
+          margin: 0 5px;
+          border-radius: 2px;
+        }
+          &:nth-child(1){
+            span{
+                background:#c73420;
             }
-        }
-        .tb{
-            padding: 20px
-        }
+          }
+          &:nth-child(2){
+            span{
+                background:#f29d38;
+            }
+          }
+          &:nth-child(3){
+            span{
+                background:#f8cd46 ;
+            }
+          }
+          &:nth-child(4){
+            span{
+                background:#53bdf9;
+            }
+          }
+      }
     }
-    .leftBg{
-        height: 100%;
-        // padding: 20px;
-        background: #fff;
-        // li:nth-child(2){
-        //     border-top: 1px solid #eee
-        // }
+    .footer {
+      padding: 20px;
+      border-top: 1px solid #e2e4e9;
+      text-align: right;
+      button:nth-child(2){
+          margin-left: @margin-min;
+      }
     }
-    .filter{
-        margin-bottom: 16px;
-        .search{
-            width: 300px;
-            margin-left: 10px
-        }
-        .search_bn{
-            margin-left: 8px
-        }
-        .bn{
-            float: right
-        }
+    .card{
+      padding: 0 20px 20px;
     }
+    .queryBar {
+      margin-bottom: @margin-base;
+      :global {
+        .ant-select {
+          width: 17%;
+          margin-left: @margin-min;
+          &:first-child {
+            margin-left: 0;
+          }
+        } 
+        .ant-btn {
+          margin-left: @margin-min;
+        }
+        .ant-input {
+          width: 17%;
+          margin-left: @margin-min;
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+        .ant-cascader-picker{
+          .ant-input{
+            width:100%
+          }
+          margin-left: @margin-min;
+          &:first-child {
+            margin-left: 0;
+          }
+          .ant-input{
+            margin-left: 0;
+          }
+        }
+      }
+    }
+    .swichQueryBar{
+      display: flex;
+      .swichQuery{
+        display: flex;
+        flex-grow: 1;
+      }
+      margin-bottom: @margin-base;
+      :global{
+        .ant-input-group{
+          margin-left: @margin-min;
+          flex-grow: 0;
+        }
+        .ant-btn {
+          margin-left: @margin-min;
+          &:last-child {
+            float: right;
+          }
+        }
+      }
+    }
+    .shieldBar{
+      display: flex;
+      justify-content: flex-start;
+      .shieldQuery{
+        margin-right:10px;
+      }
+      .vender{
+        width: 17%;
+        margin-right:10px;
+        :global{
+          .ant-select {
+            width: 100%;
+          }}
+      }
+    }
+    .size{
+      max-width: 70%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      line-height: 30px;
+    }
+    .btn {
+      margin-top: 6px;
+      margin-right: 20px;
+      button{
+        margin-left: @margin-min;
+      }
+    }
+    .topoTab {
+      :global {
+        .ant-tabs-bar {
+          min-height: 53px;
+        }
+      }
+    }
+  }
+}
+.projectile{
+  padding: 20px 0 0 0; 
+  border-top: 1px dashed #ddd;
+  margin-top: 20px;
 }

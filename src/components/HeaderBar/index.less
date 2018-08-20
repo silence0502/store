@@ -1,0 +1,59 @@
+@import "~antd/lib/style/themes/default.less";
+@import "../../style/index.less";
+.header {
+    // z-index: 99995;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: @primary-color;
+    position: fixed;
+    z-index: 999
+}
+
+.nav-wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.right {
+    float: right;
+    display: flex;
+    align-items: center;
+    line-height: 0px;
+    margin-top: 19px;
+}
+
+.title {
+    float: left;
+    width: 180px;
+    color: white;
+    font-size: 20px;
+    line-height: 57px;
+    img {
+        width: 116px;
+        height: auto;
+        display: inline-block;
+    }
+}
+
+.nav {
+    float: left;
+    line-height: 30px;
+    height: 30px;
+    margin-top: 16px;
+    overflow: hidden;
+    background-color: @primary-color;
+}
+
+a:focus {
+    text-decoration: none;
+}
+
+.ant-dropdown-link.ant-dropdown-trigger {
+    line-height: 0px;
+}
+
+.item {
+    border-radius: 3px;
+    color: #fff;
+}

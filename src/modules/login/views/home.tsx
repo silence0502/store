@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Icon, Form, Input, Button, Checkbox } from 'antd';
-require('../style/index.scss');
+import styles from '../style/index.less'
 
 const FormItem = Form.Item;
 export interface HomeProps {
@@ -25,7 +25,7 @@ class HomeCls extends React.PureComponent<HomeProps, any> {
     renderForm() {
         const { getFieldDecorator } = this.props.form;
         return (
-            <div className="form">
+            <div className={styles.form}>
                 <Form onSubmit={this.handleSubmit}>
                     <FormItem>
                         {getFieldDecorator('email', {
@@ -51,11 +51,11 @@ class HomeCls extends React.PureComponent<HomeProps, any> {
                         )}
                     </FormItem>
 
-                    <FormItem className={'additional'}>
+                    <FormItem className={styles.additional}>
                         {getFieldDecorator('remember', {
                             initialValue: false
                         })(<Checkbox className={'remember'}>记住密码</Checkbox>)}
-                        <Button type="primary" htmlType="submit" className="login-form-button">
+                        <Button type="primary" htmlType="submit" className={styles.login_form_button}>
                             登录
             </Button>
                         <a className="login-form-forgot" href="">
@@ -70,12 +70,12 @@ class HomeCls extends React.PureComponent<HomeProps, any> {
         let logo = require('../../../img/logo2.png');
         let bg = require('../../../img/login_background.png');
         return (
-            <div className="login" style={{ height: window.innerHeight }}>
-                <div className="sider" style={{ width: window.innerWidth - 400 + 'px' }}>
+            <div className={styles.login} style={{ height: window.innerHeight }}>
+                <div className={styles.sider} style={{ width: window.innerWidth - 400 + 'px' }}>
                     <img src={bg} style={{ width: window.innerWidth - 400 + 'px', height: window.innerHeight }} />
                 </div>
-                <div className="content" style={{ width: '400px' }}>
-                    <div className="logo">
+                <div className={styles.content} style={{ width: '400px' }}>
+                    <div className={styles.logo}>
                         <img src={logo} className="logoFont" />
                     </div>
                     {this.renderForm()}

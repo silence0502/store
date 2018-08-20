@@ -1,0 +1,283 @@
+@import "~antd/dist/antd.less";
+@import '~antd/lib/style/v2-compatible-reset.less';
+@import './index.less';
+@import "~antd/lib/style/themes/default.less";
+// font
+@icon-url: "/assets/fonts/iconfont/iconfont";
+
+// fix layout
+.ant-layout {
+  background: #edf0f5;
+}
+
+// fix menu
+
+.ant-menu-item .iconfont,
+.ant-menu-submenu-title .iconfont {
+  min-width: 14px;
+  margin-right: 8px;
+  -webkit-transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.ant-menu-item .iconfont + span,
+.ant-menu-submenu-title .iconfont + span {
+  -webkit-transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  opacity: 1;
+}
+.ant-menu-inline-collapsed > .ant-menu-item .iconfont,
+.ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-item .iconfont,
+.ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title .iconfont {
+  font-size: 16px;
+  line-height: 40px;
+  margin: 0;
+}
+.ant-menu-inline-collapsed > .ant-menu-item .iconfont + span,
+.ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-item .iconfont + span,
+.ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title .iconfont + span {
+  max-width: 0;
+  display: inline-block;
+  opacity: 0;
+}
+.ant-menu-inline-collapsed-tooltip .iconfont {
+  display: none;
+}
+.ant-layout .ant-menu.ant-menu-dark .ant-menu-item-selected {
+    background-color: @primary-color;
+}
+.ant-menu-horizontal {
+  border-bottom: 0px;
+}
+
+.ant-menu-horizontal > .ant-menu-item-active {
+  border-bottom: 0px;
+  color: #fff;
+}
+.ant-menu-horizontal > .ant-menu-item:hover {
+  border-bottom: 0px;
+  color: #fff;
+}
+.ant-menu-horizontal > .ant-menu-item-selected {
+    border-bottom: 0px solid #fff !important;
+    color: #fff;
+    background-color: @selected-color !important;
+}
+.ant-menu-horizontal > .ant-menu-item {
+  border-bottom: 0px;
+}
+.ant-layout-header{
+  padding:0 24px;
+}
+
+.Resizer {
+    background: #000;
+    opacity: .1;
+    z-index: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
+}
+
+.Resizer:hover {
+    -webkit-transition: all 2s ease;
+    transition: all 2s ease;
+}
+
+.Resizer.horizontal {
+    height: 7px;
+    margin: -3px 0;
+    border-top: 3px solid rgba(255, 255, 255, 0);
+    border-bottom: 3px solid rgba(255, 255, 255, 0);
+    cursor: row-resize;
+    width: 100%;
+}
+
+.Resizer.horizontal:hover {
+    border-top: 3px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+}
+
+.Resizer.vertical {
+    width: 7px;
+    margin: 0 -3px;
+    border-left: 3px solid rgba(255, 255, 255, 0);
+    border-right: 3px solid rgba(255, 255, 255, 0);
+    cursor: col-resize;
+}
+
+.Resizer.vertical:hover {
+    border-left: 3px solid rgba(0, 0, 0, 0.5);
+    border-right: 3px solid rgba(0, 0, 0, 0.5);
+}
+.Resizer.disabled {
+  cursor: not-allowed;
+}
+.Resizer.disabled:hover {
+  border-color: transparent;
+}
+.SplitPane {
+  .Pane {
+    overflow-y: auto;
+  }
+  .Pane1 {
+    background: #ffffff;
+  }
+}
+
+.ant-modal-body {
+  padding: 20px
+}
+
+// fix spin
+.ant-spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -10px;
+}
+.ant-spin-nested-loading>div>.ant-spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 0%;
+  width: 0%;
+  margin-top: -12px;
+  margin-left: -10px;
+}
+.ant-table-wrapper .ant-spin {
+  top: 0;
+  left: 0;
+  margin-top: 0;
+}
+.ant-tree li .ant-tree-node-content-wrapper.ant-tree-node-selected{
+  background-color: @primary-color;
+}
+.dynamicPropertiesPanel {
+    .ant-advanced-search-form {
+      .ant-form-item {
+        margin-bottom: 0;
+        display: flex;
+        //.ant-form-item-label {width:360px;}
+        //.ant-form-item-control-wrapper{width:500px;}
+        input:read-only,
+        input:read-only:active {border:0; box-shadow:none;}
+      }
+    }
+    .ant-form-item-required:before{
+        display: none;
+    }
+    .ant-form-item-label{
+        label {
+            color:rgba(0, 0, 0, 0.45);
+        }
+    }
+    .ant-form-item-control{
+      white-space: nowrap;
+    }
+    .ant-collapse{
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-radius: none;
+      background-color: rgba(0,0,0,0);
+    }
+    .ant-collapse-item{
+        border-top: 1px solid #d9d9d9;
+        border-left: 1px solid #d9d9d9;;
+        border-right: 1px solid #d9d9d9;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    .ant-collapse-header{
+        background-color: #ffffff;
+    }
+}
+
+.anticon-exclamation-circle-o:before {
+    color: @primary-color;
+}
+
+.treeSelect {
+  .ant-input-search {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    z-index: 99;
+    padding: @margin-min;
+    background-color: #fff;
+    &:not(.ant-input-search-small) > .ant-input-suffix {
+      right: 22px;
+    }
+  }
+  .ant-tree {
+    margin-top: 50px;
+  }
+}
+.sideBar{
+  ul{
+    border-color:#fff;
+  }
+  .ant-menu-item{
+    margin-bottom:0;
+    margin-top:0;
+  }
+ .ant-menu-item:not(:last-child){
+    margin-bottom:0;
+ }
+ .ant-menu-submenu-title{
+    margin-bottom:0;
+    margin-top:0;
+ }
+ .ant-menu-submenu-selected{
+   color:@primary-color;
+ }
+
+}
+
+.ant-tabs.ant-tabs-card {
+  &>.ant-tabs-bar {
+      margin: 0;
+      .ant-tabs-ink-bar {
+        left: 0px;
+        right: 0;
+        top: 0px;
+        box-sizing: border-box;
+        height: 3px;
+        background-color: #00b388;
+        visibility: visible !important;
+      }
+      .ant-tabs-tab {
+        margin-right: 0 !important;
+        margin-left: -1px !important;
+        border-radius: 0;
+      }
+      .ant-tabs-tab:nth-child(2) {
+        margin-left: 0 !important;
+      }
+  }
+  &>.ant-tabs-content {
+    .ant-tabs-bar {
+      margin: 0;
+    }
+    .ant-tabs-ink-bar { 
+      height: 3px;
+    }
+    .ant-tabs-small .ant-tabs-tab{
+      padding: 16px 16px;
+    }
+  }
+}
+.filterServerForm{
+.ant-form-item{
+        margin-bottom: 10px !important;
+    }
+}
+.filterSwitchBoardForm{
+.ant-form-item{
+        margin-bottom: 10px !important;
+    }
+}

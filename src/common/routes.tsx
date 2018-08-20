@@ -1,5 +1,7 @@
 import * as React from 'react'
 import * as Loadable from 'react-loadable';
+import * as PropTypes from 'prop-types';
+import Site from './site'
 import Loading from './loading'
 import {
   HashRouter as Router,
@@ -7,27 +9,33 @@ import {
   Route, Link,
   Redirect
 } from 'react-router-dom'
-import Site from './site'
 
 const LoginComponent = Loadable({
-  loader: () => import(/* webpackChunkName: "login" */'../modules/login/routes/index'),
-  loading: () => { return <div style={{ marginTop: (window.innerHeight) / 2 + 'px' }}><Loading /></div> }
+  loader: () => import(/* webpackChunkName: "dashboard" */'../modules/login/routes/index'),
+  loading: () => { return <Loading /> }
 })
 const StoreComponent = Loadable({
-  loader: () => import(/* webpackChunkName: "login" */'../modules/store/routes/index'),
-  loading: () => { return <div style={{ marginTop: (window.innerHeight) / 2 + 'px' }}><Loading /></div> }
-})
-const statisticsComponent = Loadable({
-  loader: () => import(/* webpackChunkName: "login" */'../modules/statistics/routes/index'),
-  loading: () => { return <div style={{ marginTop: (window.innerHeight) / 2 + 'px' }}><Loading /></div> }
+  loader: () => import(/* webpackChunkName: "dashboard" */'../modules/store/routes/index'),
+  loading: () => { return <Loading /> }
 })
 
 export interface MainRouresProps {
-  store?: any
+  store?
 }
 
 export default class MainRoures extends React.PureComponent<MainRouresProps, any> {
 
+  static contextTypes = {
+    store: PropTypes.object,
+  }
+  static childContextTypes = {
+    store: PropTypes.object,
+  }
+  getChildContext() {
+    return {
+      store: this.props.store
+    };
+  }
   render() {
     return (
       <Router>
@@ -36,7 +44,6 @@ export default class MainRoures extends React.PureComponent<MainRouresProps, any
             <Redirect from="/" to="/login" exact />
             <Route path="/login" component={LoginComponent} />
             <Route path="/store" component={StoreComponent} />
-            <Route path="/statistics" component={statisticsComponent} />
           </Switch>
         </Site>
       </Router>

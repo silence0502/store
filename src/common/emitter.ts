@@ -1,5 +1,5 @@
-import { EventEmitter } from 'fbemitter';
+import { EventEmitter } from 'fbemitter'
 
-let emitter = new EventEmitter();
+let emitter = new EventEmitter()
 
-export default emitter;
+export default emitter

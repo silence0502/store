@@ -1,7 +1,5 @@
 import * as React from 'react';
-import './style/index'
-
-import * as classNames from 'classnames'
+import styles from './style/index.less';
 
 export interface SectionHeaderProps {
     title?;
@@ -12,9 +10,9 @@ class SectionHeader extends React.Component<SectionHeaderProps, any> {
     render() {
         let { title, children, style } = this.props
         return (
-            <div className="section-header" style={style}>
-                <header className="title">{title}</header>
-                <div className="btn-box">
+            <div className={styles.section_header} style={style}>
+                <header className={styles.title}>{title}</header>
+                <div className={styles.btn_box}>
                     {children}
                 </div>
             </div>

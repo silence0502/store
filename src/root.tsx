@@ -1,7 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import * as _ from 'lodash';
 import { Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 const { connect } = require('react-redux')
 
 import MainRoures from './common/routes';

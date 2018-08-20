@@ -1,0 +1,28 @@
+@import "~antd/lib/style/themes/default.less";
+@import "../../../style/index.less";
+
+.login{
+    display: flex;
+    .sider{
+        height: 100%;
+        // background-image: url(../../../img/login_background.png);
+        background-size: cover
+    }
+    .content{
+        background-color: #ffffff;
+        height: 100%;
+        padding: 0px 30px;
+        .logo{
+            margin-top: 90px;
+            text-align: center;
+        }
+        .form{
+            margin-top: @margin-base;
+            .additional{
+                .login_form_button{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

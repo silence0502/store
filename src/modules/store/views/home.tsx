@@ -1,80 +1,68 @@
 import * as React from 'react';
+import * as _ from 'lodash';
+
+import { Row, Menu, Icon } from 'antd';
 import SplitPane from 'react-split-pane'
-
 import { Switch, Route, Redirect } from 'react-router-dom'
+import { matchPath } from 'react-router'
+import Store from '../container/store'
+import Charts from '../container/charts'
+import styles from '../style/index.less'
 
-import Store from './store'
-
-import { Tree } from 'antd';
-
-const TreeNode = Tree.TreeNode;
-
-
-import '../style/index'
-
-
-export interface HomeProps {
-    modalTitle?
-    history?
-    match?
-    location?
-}
-class Home extends React.PureComponent<HomeProps, any> {
-    constructor(props: any) {
+class Home extends React.Component<any, any> {
+    constructor(props) {
         super(props);
-        this.state = {
-
-        };
-    }
-
-    componentDidMount() {
-
+        this.state = {}
     }
     componentWillMount() {
 
-
     }
-    componentWillUnmount() {
+    componentWillReceiveProps(nextProps) {
 
     }
     renderLeftNav() {
-        return (
-            <Tree
-                defaultExpandedKeys={['0-0-0', '0-0-1']}
-                defaultSelectedKeys={['0-0-0', '0-0-1']}
-                defaultCheckedKeys={['0-0-0', '0-0-1']}
-            >
-                <TreeNode title="parent 1" key="0-0">
-                    <TreeNode title="parent 1-0" key="0-0-0" >
-                        <TreeNode title="leaf" key="0-0-0-0" />
-                        <TreeNode title="leaf" key="0-0-0-1" />
-                    </TreeNode>
-                    <TreeNode title="parent 1-1" key="0-0-1">
-                        <TreeNode title={<span style={{ color: '#1890ff' }}>sss</span>} key="0-0-1-0" />
-                    </TreeNode>
-                </TreeNode>
-            </Tree>
-        )
+        let path = this.props.location.pathname
+        let pathKey = path.replace('/setting/', '');
+        if (pathKey.indexOf('setting') < 0) {
+            return (
+                <Menu defaultSelectedKeys={pathKey} mode="inline">
+                    <Menu.Item key="1">
+                        <Icon type="shop" />望京店
+                    </Menu.Item>
+                    <Menu.Item key="2">
+                        <Icon type="shop" />东直门店
+                    </Menu.Item>
+                    <Menu.Item key="3">
+                        <Icon type="shop" />西直门店
+                    </Menu.Item>
+                    <Menu.Item key="4">
+                        <Icon type="shop" />中关村店
+                    </Menu.Item>
+                </Menu>
+            )
+        }
     }
     render() {
+        let { match } = this.props
         return (
-            <div className='store'>
+            <Row className={styles.resource}>
                 <SplitPane
                     split="vertical"
                     minSize={100}
-                    maxSize={300}
-                    style={{ position: 'relative' }}
-                    defaultSize={250}
-                >
-                    <div className="leftBg" >
-                        {this.renderLeftNav()}
-                    </div>
-                    <div className='main' style={{ height: window.innerHeight - 104, overflowY: 'scroll' }}>
-                        <Store />
+                    maxSize={270}
+                    style={{ height: '', maxHeight: window.innerHeight - 64 }}
+                    defaultSize={236} >
+                    {this.renderLeftNav()}
+                    <div className={styles.main} style={{ minHeight: window.innerHeight - 104 }}>
+                        <Switch>
+                            <Redirect from={`${match.url}`} to={`${match.url}/photo`} exact />
+                            <Route path={`${match.url}/photo`} component={Store} />
+                            <Route path={`${match.url}/statistics`} component={Charts} />
+                        </Switch>
                     </div>
                 </SplitPane>
-            </div>
-        )
+            </Row >
+        );
     }
 }
 
