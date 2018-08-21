@@ -1,10 +1,9 @@
 import { Table, Icon, Divider } from 'antd';
 import React from 'react';
 
-
 export interface ChartTableProps {
-    data?
-    columns?
+  data?
+  columns?
 }
 
 /**
@@ -16,15 +15,15 @@ export interface ChartTableProps {
  */
 
 export default class ChartTable extends React.PureComponent<ChartTableProps, any> {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
     }
   }
 
-  render(){
-    return(
-      <Table columns={this.props.columns} dataSource={this.props.data} pagination={false}/>
+  render() {
+    return (
+      <Table columns={this.props.columns} dataSource={this.props.data} pagination={false} />
     )
   }
 }

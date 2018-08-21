@@ -2,23 +2,46 @@ import * as React from 'react';
 import { Icon, Form, Input, Button, Checkbox } from 'antd';
 import styles from '../style/index.less'
 
+import PropTypes from 'prop-types';
+
+import emitter from '../../../common/emitter'
+
+import { CommonActions } from '../../common/actions/index'
+
 const FormItem = Form.Item;
 export interface HomeProps {
-    actions?: any;
+    location?,
+    actions?: CommonActions;
     name?: any;
     history?
     form;
 }
 
 class HomeCls extends React.PureComponent<HomeProps, any> {
+    static childContextTypes = {
+        location: PropTypes.object,
+    }
+    constructor(props) {
+        super(props)
+    }
     componentWillMount() {
 
     }
     handleSubmit = e => {
         e.preventDefault();
+        let self = this
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.props.history.push(`store`)
+                self.props.actions.login(values, (data) => {
+                    if (data) {
+                        localStorage.setItem('user_info', JSON.stringify(data))
+                        // console.log(JSON.parse(localStorage.getItem('user_info')), '================================');
+                        emitter.emit('message', 'success', '登录成功！')
+                        this.props.history.replace(`/store/photo`)
+                    } else {
+                        emitter.emit('message', 'error', '用户名或密码错误！')
+                    }
+                })
             }
         });
     };

@@ -1,68 +1,82 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 
-import { Row, Menu, Icon } from 'antd';
+import { Row, Menu, Icon, Spin } from 'antd';
+
 import SplitPane from 'react-split-pane'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { matchPath } from 'react-router'
+
 import Store from '../container/store'
 import Charts from '../container/charts'
+
 import styles from '../style/index.less'
 
 class Home extends React.Component<any, any> {
     constructor(props) {
         super(props);
-        this.state = {}
+        let { store_list } = this.props
+        this.state = {
+            store_id: store_list ? store_list : ''
+        }
     }
     componentWillMount() {
-
+        let user_info = JSON.parse(localStorage.getItem('user_info'))
+        this.props.actions.get_store_list(user_info.id)
     }
     componentWillReceiveProps(nextProps) {
 
     }
+    handleClick(e) {
+        this.setState({
+            store_id: e.key
+        })
+    }
+    renderMenuItem() {
+        let { store_list } = this.props
+        return (
+            store_list.map((item, index) => {
+                return (
+                    <Menu.Item key={item.id}>
+                        <Icon type="shop" />{item.name}
+                    </Menu.Item>
+                )
+            })
+        )
+    }
     renderLeftNav() {
-        let path = this.props.location.pathname
-        let pathKey = path.replace('/setting/', '');
-        if (pathKey.indexOf('setting') < 0) {
-            return (
-                <Menu defaultSelectedKeys={pathKey} mode="inline">
-                    <Menu.Item key="1">
-                        <Icon type="shop" />望京店
-                    </Menu.Item>
-                    <Menu.Item key="2">
-                        <Icon type="shop" />东直门店
-                    </Menu.Item>
-                    <Menu.Item key="3">
-                        <Icon type="shop" />西直门店
-                    </Menu.Item>
-                    <Menu.Item key="4">
-                        <Icon type="shop" />中关村店
-                    </Menu.Item>
-                </Menu>
-            )
-        }
+        let pathKey = this.state.store_id
+        return (
+            <Menu defaultSelectedKeys={pathKey} mode="inline" onClick={this.handleClick.bind(this)}>
+                {this.renderMenuItem()}
+            </Menu>
+        )
     }
     render() {
         let { match } = this.props
-        return (
-            <Row className={styles.resource}>
-                <SplitPane
-                    split="vertical"
-                    minSize={100}
-                    maxSize={270}
-                    style={{ height: '', maxHeight: window.innerHeight - 64 }}
-                    defaultSize={236} >
-                    {this.renderLeftNav()}
-                    <div className={styles.main} style={{ minHeight: window.innerHeight - 104 }}>
-                        <Switch>
-                            <Redirect from={`${match.url}`} to={`${match.url}/photo`} exact />
-                            <Route path={`${match.url}/photo`} component={Store} />
-                            <Route path={`${match.url}/statistics`} component={Charts} />
-                        </Switch>
-                    </div>
-                </SplitPane>
-            </Row >
-        );
+        let { store_id } = this.state
+        if (this.props.store_list) {
+            return (
+                <Row className={styles.resource}>
+                    <SplitPane
+                        split="vertical"
+                        minSize={100}
+                        maxSize={270}
+                        style={{ height: '', maxHeight: window.innerHeight - 64 }}
+                        defaultSize={236} >
+                        {this.renderLeftNav()}
+                        <div className={styles.main} style={{ minHeight: window.innerHeight - 104 }}>
+                            <Switch>
+                                <Redirect from={`${match.url}`} to={`${match.url}/photo`} exact />
+                                <Route path={`${match.url}/photo`} render={() => <Store {...{ store_id }} />} />
+                                <Route path={`${match.url}/statistics`} render={() => <Charts {...{ store_id }} />} />
+                            </Switch>
+                        </div>
+                    </SplitPane>
+                </Row >
+            );
+        } else {
+            return <Spin />
+        }
     }
 }
 

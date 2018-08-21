@@ -4,9 +4,9 @@ const path = require('path');
 const __basename = path.dirname(__dirname);
 
 var config = {
-    port: '9001',
+    port: '9000',
     deploy: {
-        host: '47.94.4.45',
+        host: '139.199.126.203',
         port: 22,
         auth: 'hpe',
         remotePath: '/opt/cloud-management-platform/'

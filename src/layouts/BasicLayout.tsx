@@ -31,14 +31,14 @@ export default class BasicLayout extends React.Component<BasicLayoutProps, any> 
     this.state = {
     };
   }
-  logout() {
-    emitter.emit('notification', '退出成功', '', 'success')
-    this.props.history.push('/login')
-  }
+  // logout() {
+  //   emitter.emit('notification', '退出成功', '', 'success')
+  //   this.props.history.push('/login')
+  // }
   render() {
     return (
       <Layout className={styles['layout']}>
-        <HeaderBar navClickHandler={this.props.navClickHandler} activeKey={this.props.activeKey} />
+        <HeaderBar navClickHandler={this.props.navClickHandler} exitHandler={this.props.exitHandler} activeKey={this.props.activeKey} />
         <Layout className={styles['page-body']}>
           <Content className={styles['page-content']}>{this.props.children}
           </Content>

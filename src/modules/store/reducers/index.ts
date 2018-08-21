@@ -2,18 +2,22 @@ import ActionTypes from '../constants/actionTypes'
 
 const merge = require('lodash/merge')
 
-class DemoState {
+class StoreState {
     name: string;
-    config: Object
+    store_list: Object
+    photo_list: Object
+    photo_info: Object
     constructor() {
-        this.name = 'DEMO'
-        this.config = {}
+        this.name = 'STORE'
+        this.store_list = {}
+        this.photo_list = {}
+        this.photo_info = {}
     }
 }
 
-let demoReducer = (state = new DemoState(), action = null) => {
+let storeReducer = (state = new StoreState(), action = null) => {
     switch (action.type) {
-        case ActionTypes.DEMO_SAY_HELLO:
+        case ActionTypes.STORE_SAY_HELLO:
             return merge({}, state, action)
         default:
             return state
@@ -21,6 +25,6 @@ let demoReducer = (state = new DemoState(), action = null) => {
 }
 
 export {
-    DemoState,
-    demoReducer
+    StoreState,
+    storeReducer
 }

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { matchPath } from 'react-router'
 import styles from './index.less';
 import { Layout, Menu, Icon, Avatar, Dropdown, Input } from 'antd';
-import { login } from '../../modules/common/actions/user';
 const Search = Input.Search;
 const { Header, Footer, Sider, Content } = Layout;
 declare let global: any;
@@ -55,17 +54,8 @@ export default class HeaderBar extends React.PureComponent<HeaderBarProps, any> 
             navClickHandler(e.key)
         }
     }
-    searchHandler = (value) => {
-        this.setState({
-            queryKey: ''
-        })
-        let { goSearch } = this.props
-        if (goSearch) {
-            goSearch(value)
-        }
-    }
     renderMenuItem() {
-        return _.map(this.props.menu, (item) => {
+        return _.map(this.props.menu, (item: any) => {
             return (
                 <Menu.Item key={item.route} className={styles.item}>
                     <span>{item.name}</span>
@@ -83,6 +73,7 @@ export default class HeaderBar extends React.PureComponent<HeaderBarProps, any> 
                 <Menu.Item><a onClick={this.exit.bind(this)}>退出</a></Menu.Item>
             </Menu>
         );
+        let user_info = JSON.parse(localStorage.getItem('user_info'))
         return (
             <Header className={styles.header}>
                 <div className={styles['nav-wrapper']}>
@@ -103,7 +94,7 @@ export default class HeaderBar extends React.PureComponent<HeaderBarProps, any> 
                         <Avatar icon="user" size="small" style={{ backgroundColor: '#fff', color: '#00b388', marginRight: '8px' }} />
                         <Dropdown overlay={option}>
                             <a className="ant-dropdown-link">
-                                <span style={{ color: '#fff', marginRight: '6px' }}>admin</span>
+                                <span style={{ color: '#fff', marginRight: '6px' }}>{user_info.email}</span>
                                 <Icon type="down" style={{ color: '#fff' }} />
                             </a>
                         </Dropdown>

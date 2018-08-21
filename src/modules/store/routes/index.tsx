@@ -7,7 +7,7 @@ import {
     Route,
 } from 'react-router-dom'
 
-let { demoReducer } = require('../reducers/index');
+let { storeReducer } = require('../reducers/index');
 
 export interface RoutesProps {
     // store
@@ -20,7 +20,7 @@ export default class Routes extends React.Component<RoutesProps, any> {
     }
     componentWillMount() {
         let { store } = this.context
-        injectAsyncReducer(store, 'demoReducer', demoReducer);
+        injectAsyncReducer(store, 'storeReducer', storeReducer);
     }
 
     render() {

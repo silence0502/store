@@ -1,3 +1,3 @@
 export default {
-    DEMO_SAY_HELLO: 'DEMO_SAY_HELLO',
+    STORE_SAY_HELLO: 'STORE_SAY_HELLO',
 }

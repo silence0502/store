@@ -18,7 +18,8 @@ declare let global: any;
 
 function mapProps(state: any) {
     return {
-
+        currentUser: state.commonReducer.currentUser,
+        store_list: state.commonReducer.store_list
     }
 }
 function mapDispatchToProps(dispatch: any) {
@@ -34,6 +35,8 @@ export interface SiteProps {
     matchPath,
     match,
     history?
+    store_list
+    currentUser
 }
 
 message.config({
@@ -68,6 +71,12 @@ class Site extends React.Component<SiteProps, any> {
             this.props.history.push(`/store/${key}`)
         }
     }
+    exitHandler() {
+        emitter.emit('message', 'success', '退出成功')
+        this.props.history.push(`/login`)
+        // localStorage.removeItem('user_info')
+        localStorage.clear()
+    }
     componentWillMount() {
         emitter.addListener('message', (type, content, duration, onClose) => {
             message.destroy()
@@ -82,12 +91,20 @@ class Site extends React.Component<SiteProps, any> {
                     message.success(content, duration, onClose)
             }
         })
+        // if (!matchPath('/login', { path: this.props.location.pathname })) {
+        //     let user_info = JSON.parse(localStorage.getItem('user_info'))
+        //     console.log(user_info, '------------------------1');
+        //     this.props.actions.get_store_list(user_info.id)
+        // } else {
+        //     console.log(user_info, '------------------------2');
+        // }
     }
 
     componentWillReceiveProps(nextProps: any) {
 
     }
     componentDidMount() {
+
     }
 
     componentWillUnmount() {
@@ -118,16 +135,22 @@ class Site extends React.Component<SiteProps, any> {
                     activeKey.push(fun.route);
                 }
             });
+            // if (this.props.store_list) {
             return (
                 <BasicLayout
                     navClickHandler={this.navClickHandler.bind(this)}
                     activeKey={activeKey}
                     menu={menu}
+                    exitHandler={this.exitHandler.bind(this)}
                 >
                     {this.props.children}
                 </BasicLayout>
             );
         }
+        // else {
+        //     return <Spin />
+        // }
+        // }
     }
 }
 
