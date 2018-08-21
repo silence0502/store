@@ -72,10 +72,13 @@ class Site extends React.Component<SiteProps, any> {
         }
     }
     exitHandler() {
-        emitter.emit('message', 'success', '退出成功')
-        this.props.history.push(`/login`)
-        // localStorage.removeItem('user_info')
-        localStorage.clear()
+        this.props.actions.logout((store_list) => {
+            if (!store_list) {
+                emitter.emit('message', 'success', '退出成功')
+                this.props.history.push(`/login`)
+                localStorage.removeItem('user_info')
+            }
+        })
     }
     componentWillMount() {
         emitter.addListener('message', (type, content, duration, onClose) => {
@@ -91,23 +94,24 @@ class Site extends React.Component<SiteProps, any> {
                     message.success(content, duration, onClose)
             }
         })
-        // if (!matchPath('/login', { path: this.props.location.pathname })) {
-        //     let user_info = JSON.parse(localStorage.getItem('user_info'))
-        //     console.log(user_info, '------------------------1');
-        //     this.props.actions.get_store_list(user_info.id)
-        // } else {
-        //     console.log(user_info, '------------------------2');
-        // }
+        if (!matchPath('/login', { path: this.props.location.pathname })) {
+            let user_info = JSON.parse(localStorage.getItem('user_info'))
+            this.props.actions.get_store_list(user_info.id)
+        }
     }
 
     componentWillReceiveProps(nextProps: any) {
-
+        let user_info = JSON.parse(localStorage.getItem('user_info'))
+        if (!nextProps.store_list && user_info) {
+            this.props.actions.get_store_list(user_info.id)
+        }
     }
     componentDidMount() {
 
     }
 
     componentWillUnmount() {
+
     }
 
     render() {
@@ -135,22 +139,21 @@ class Site extends React.Component<SiteProps, any> {
                     activeKey.push(fun.route);
                 }
             });
-            // if (this.props.store_list) {
-            return (
-                <BasicLayout
-                    navClickHandler={this.navClickHandler.bind(this)}
-                    activeKey={activeKey}
-                    menu={menu}
-                    exitHandler={this.exitHandler.bind(this)}
-                >
-                    {this.props.children}
-                </BasicLayout>
-            );
+            if (this.props.store_list) {
+                return (
+                    <BasicLayout
+                        navClickHandler={this.navClickHandler.bind(this)}
+                        activeKey={activeKey}
+                        menu={menu}
+                        exitHandler={this.exitHandler.bind(this)}
+                    >
+                        {this.props.children}
+                    </BasicLayout>
+                );
+            } else {
+                return <Spin />
+            }
         }
-        // else {
-        //     return <Spin />
-        // }
-        // }
     }
 }
 

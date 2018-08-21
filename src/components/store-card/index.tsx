@@ -19,7 +19,7 @@ class StoreCard extends React.Component<StoreCardProps, any> {
             <div className={styles.store_card} >
                 <Card
                     cover={<img alt="example" src={data.img} onClick={this.renderModal.bind(this)} />}
-                // actions={[<Icon type='setting' />, <Icon type='edit' />, <Icon type='ellipsis' />]}
+                    actions={[<Icon type='setting' />, <Icon type='edit' />, <Icon type='ellipsis' />]}
                 >
                 </Card>
             </div>

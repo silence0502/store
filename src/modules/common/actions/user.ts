@@ -16,3 +16,11 @@ export const login = (params, cb) => (dispatch) => {
         }
     })
 };
+
+export const logout = (cb) => (dispatch) => {
+    let action = { type: ActionTypes.COMMON_SAY_HELLO, store_list: null }
+    dispatch(action);
+    if (cb) {
+        cb(null)
+    }
+}

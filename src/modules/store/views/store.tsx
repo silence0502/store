@@ -6,9 +6,6 @@ const Search = Input.Search;
 import SectionHeader from '../../../components/section-header'
 import StoreCard from '../../../components/store-card'
 
-var qs = require('querystringify')
-import { stringify } from 'querystringify'
-
 export interface StoreProps {
     modalTitle?
     history?
@@ -18,52 +15,17 @@ export interface StoreProps {
     actions?
     photo_list?
     photo_info?
+    listLoading?
+    goPage?
+    page_size?
+    page_num?
 }
-let data = [
-    {
-        id: 0,
-        images: require('../../../img/1-1.JPG')
-    },
-    {
-        id: 1,
-        images: require('../../../img/1-2.JPG')
-    },
-    {
-        id: 2,
-        images: require('../../../img/1-3.JPG')
-    },
-    {
-        id: 3,
-        images: require('../../../img/1-4.JPG')
-    },
-    {
-        id: 4,
-        images: require('../../../img/1-5.JPG')
-    },
-    {
-        id: 5,
-        images: require('../../../img/1-6.JPG')
-    },
-    {
-        id: 6,
-        images: require('../../../img/1-6的侧.JPG')
-    },
-    {
-        id: 7,
-        images: require('../../../img/1-7.JPG')
-    },
-]
 class Store extends React.PureComponent<StoreProps, any> {
     constructor(props: any) {
         super(props);
-        // let { page_num } = qs.parse(this.props.location.search)
         this.state = {
             visible: false,
-            _data: {},
-            listLoading: false,
-            // page_size: 8,
-            // page_num: page_num ? page_num : 1,
-            store: this.props.store_id
+            _data: {}
         };
     }
 
@@ -71,6 +33,12 @@ class Store extends React.PureComponent<StoreProps, any> {
         this.setState({
             visible: false,
         });
+    }
+
+    goPage(current) {
+        if (this.props.goPage) {
+            this.props.goPage(current)
+        }
     }
 
     handleCancel = (e) => {
@@ -85,33 +53,6 @@ class Store extends React.PureComponent<StoreProps, any> {
             visible: true,
             _data: this.props.photo_info
         })
-    }
-
-    getDataFn(queryObj) {
-        this.setState({
-            listLoading: true
-        });
-        let self = this
-        let { store } = queryObj
-        this.props.actions.get_photo_list({ store }, () => {
-            self.setState({
-                listLoading: false
-            });
-        })
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.store_id !== this.props.store_id) {
-            // console.log(nextProps.store_id, '=======================================>');
-        }
-    }
-
-    componentWillMount() {
-        let { store } = this.state
-        let queryObj = {
-            store
-        }
-        this.getDataFn(queryObj)
     }
 
     renderModal() {
@@ -130,6 +71,9 @@ class Store extends React.PureComponent<StoreProps, any> {
                 </Col>
             </Row>
         )
+    }
+    componentWillMount() {
+
     }
     componentDidMount() {
 
@@ -152,13 +96,31 @@ class Store extends React.PureComponent<StoreProps, any> {
     }
     renderList() {
         return (
-            <Row gutter={15}>
-                {this.renderCard()}
-            </Row>
+            <div style={{ minHeight: window.innerHeight - 305 }}>
+                <Row gutter={15}>
+                    {this.renderCard()}
+                </Row>
+            </div>
         )
     }
+    renderPagination() {
+        if (this.props.photo_list.rows.length > 0) {
+            return (
+                <Pagination
+                    showQuickJumper
+                    onChange={this.goPage.bind(this)}
+                    total={this.props.photo_list.count}
+                    current={parseInt(this.props.page_num + 1, 10)}
+                    pageSize={this.props.page_size} />
+            )
+        } else {
+            return (
+                <div>当前无内容</div>
+            )
+        }
+    }
     render() {
-        if (this.props.photo_list && this.props.photo_list.rows) {
+        if (!this.props.listLoading && this.props.photo_list && this.props.photo_list.rows) {
             return (
                 <div style={{ padding: '10px' }}>
                     <SectionHeader title="图像列表"></SectionHeader>
@@ -170,7 +132,7 @@ class Store extends React.PureComponent<StoreProps, any> {
                     </div>
                     {this.renderList()}
                     <div style={{ margin: '15px 0 0 0', textAlign: 'center' }}>
-                        <Pagination showQuickJumper defaultCurrent={2} total={500} />
+                        {this.renderPagination()}
                     </div>
                     <div>
                         <Modal

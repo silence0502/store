@@ -8,7 +8,6 @@ import Store from '../views/store'
 function mapProps(state) {
     return {
         name: state.storeReducer.name,
-        photo_list: state.storeReducer.photo_list,
         photo_info: state.storeReducer.photo_info,
     }
 }

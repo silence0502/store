@@ -3,6 +3,7 @@ import storeAPI from '../api/storeAPI'
 
 export const get_photo_list = (params, cb) => (dispatch) => {
     return storeAPI.photo_list(params).then((res) => {
+        dispatch({ type: ActionTypes.STORE_SAY_HELLO, photo_list: null });
         let action = { type: ActionTypes.STORE_SAY_HELLO, photo_list: res.data }
         dispatch(action);
         if (cb) {
