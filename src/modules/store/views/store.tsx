@@ -5,6 +5,7 @@ const Search = Input.Search;
 
 import SectionHeader from '../../../components/section-header'
 import StoreCard from '../../../components/store-card'
+import NoData from '../../../components/NoData'
 
 export interface StoreProps {
     modalTitle?
@@ -25,7 +26,6 @@ class Store extends React.PureComponent<StoreProps, any> {
         super(props);
         this.state = {
             visible: false,
-            _data: {}
         };
     }
 
@@ -48,20 +48,19 @@ class Store extends React.PureComponent<StoreProps, any> {
     }
 
     showModal(id) {
-        this.props.actions.get_photo_info(id)
-        this.setState({
-            visible: true,
-            _data: this.props.photo_info
+        this.props.actions.get_photo_info(id, () => {
+            this.setState({
+                visible: true,
+            })
         })
     }
 
     renderModal() {
-        let { _data } = this.state
         return (
             <Row gutter={15}>
                 <Col className="gutter-row" span={12}>
                     <div className="gutter-box">
-                        <img alt="example" src={_data.img} style={{ width: '100%', height: '100%' }} />
+                        <img alt="example" src={this.props.photo_info.img} style={{ width: '100%', height: '100%' }} />
                     </div>
                 </Col>
                 <Col className="gutter-row" span={12}>
@@ -95,13 +94,19 @@ class Store extends React.PureComponent<StoreProps, any> {
         )
     }
     renderList() {
-        return (
-            <div style={{ minHeight: window.innerHeight - 305 }}>
-                <Row gutter={15}>
-                    {this.renderCard()}
-                </Row>
-            </div>
-        )
+        if (this.props.photo_list.rows.length > 0) {
+            return (
+                <div style={{ minHeight: window.innerHeight - 305 }}>
+                    <Row gutter={15}>
+                        {this.renderCard()}
+                    </Row>
+                </div>
+            )
+        } else {
+            return (
+                <NoData />
+            )
+        }
     }
     renderPagination() {
         if (this.props.photo_list.rows.length > 0) {
@@ -110,12 +115,8 @@ class Store extends React.PureComponent<StoreProps, any> {
                     showQuickJumper
                     onChange={this.goPage.bind(this)}
                     total={this.props.photo_list.count}
-                    current={parseInt(this.props.page_num + 1, 10)}
+                    current={parseInt(this.props.page_num, 10) + 1}
                     pageSize={this.props.page_size} />
-            )
-        } else {
-            return (
-                <div>当前无内容</div>
             )
         }
     }

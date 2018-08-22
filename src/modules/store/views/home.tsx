@@ -27,7 +27,7 @@ class Home extends React.Component<any, any> {
         }
     }
     goPage(current) {
-        let page_num = current
+        let page_num = current - 1
         let { page_size, store } = this.state
         let queryObj = {
             page_num, page_size, store
@@ -63,14 +63,17 @@ class Home extends React.Component<any, any> {
         this.getDataFn(queryObj)
     }
     handleClick(e) {
-        let { page_num, page_size } = this.state
+        let { page_size } = this.state
         let store = e.key
+        let page_num = 0
         let queryObj = {
             store, page_num, page_size
         }
+        this.props.history.push(`/store/photo?${stringify({ page_num })}`)
         this.getDataFn(queryObj)
         this.setState({
-            store: e.key
+            store: e.key,
+            page_num: 0
         })
     }
     renderMenuItem() {
@@ -108,7 +111,7 @@ class Home extends React.Component<any, any> {
                     <div className={styles.main} style={{ minHeight: window.innerHeight - 104 }}>
                         <Switch>
                             <Redirect from={`${match.url}`} to={`${match.url}/photo`} exact />
-                            <Route path={`${match.url}/photo`} render={(props) => <Store {...{ photo_list, listLoading, page_num, page_size }} />} goPage={this.goPage.bind(this)} />
+                            <Route path={`${match.url}/photo`} render={(props) => <Store {...{ photo_list, listLoading, page_num, page_size }} goPage={this.goPage.bind(this)} />} />
                             <Route path={`${match.url}/statistics`} render={() => <Charts />} />
                         </Switch>
                     </div>

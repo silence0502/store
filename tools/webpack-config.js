@@ -11,7 +11,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin-hash');
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const OfflinePlugin = require('offline-plugin');
+// const OfflinePlugin = require('offline-plugin');
 
 const tsImportPluginFactory = require('ts-import-plugin')
 
@@ -158,7 +158,7 @@ module.exports = (type) => {
             }),
             new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en|zh-cn)$/), ,
             new webpack.BannerPlugin(header),
-            isDist && new OfflinePlugin()
+            // isDist && new OfflinePlugin()
         ]),
         module: {
             rules: _.compact([
