@@ -3,7 +3,7 @@
 @import './index.less';
 @import "~antd/lib/style/themes/default.less";
 // font
-@icon-url: "/assets/fonts/iconfont/iconfont";
+// @icon-url: "/assets/fonts/iconfont/iconfont";
 
 // fix layout
 .ant-layout {

@@ -9,10 +9,10 @@ export interface StoreParams {
 
 class StoreAPI {
     photo_list(params?: StoreParams) {
-        return axios.get(`/api/photos?${stringify(params)}`)
+        return axios.get(`/store_api/photos?${stringify(params)}`)
     }
     photo_info(photo_id) {
-        return axios.get(`/api/photos/${photo_id}`)
+        return axios.get(`/store_api/photos/${photo_id}`)
     }
 }
 

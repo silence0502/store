@@ -23,7 +23,7 @@ var options = {
     ws: true,                         // proxy websockets
     ignorePath: false,
     pathRewrite: {
-        '^/api': ''
+        '^/store_api': ''
     }
 };
 
@@ -42,7 +42,7 @@ function startDevServer() {
     }));
 
     app.use(hotMiddleware(compiler));
-    app.use('/api/*', webProxy);
+    app.use('/store_api/*', webProxy);
 
     // // First, find files from src folder
     // app.use(express.static(path.join(__dirname, '../src')));

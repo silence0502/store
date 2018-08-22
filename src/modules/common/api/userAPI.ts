@@ -7,7 +7,7 @@ export interface LoginParams {
 
 class UserAPI {
     login(params: LoginParams) {
-        return axios.post(`/api/login`, params, {
+        return axios.post(`/store_api/login`, params, {
             headers: {
                 'Content-Type': 'application/json'
             },
