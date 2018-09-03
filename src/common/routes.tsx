@@ -11,11 +11,11 @@ import {
 } from 'react-router-dom'
 
 const LoginComponent = Loadable({
-  loader: () => import(/* webpackChunkName: "dashboard" */'../modules/login/routes/index'),
+  loader: () => import(/* webpackChunkName: "login" */'../modules/login/routes/index'),
   loading: () => { return <Loading /> }
 })
 const StoreComponent = Loadable({
-  loader: () => import(/* webpackChunkName: "dashboard" */'../modules/store/routes/index'),
+  loader: () => import(/* webpackChunkName: "store" */'../modules/store/routes/index'),
   loading: () => { return <Loading /> }
 })
 

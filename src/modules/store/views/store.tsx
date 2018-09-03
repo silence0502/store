@@ -1,7 +1,8 @@
 import * as React from 'react';
 
-import { Pagination, Input, Row, Col, Modal, Spin } from 'antd';
+import { Pagination, Input, Row, Col, Modal, Spin, message } from 'antd';
 const Search = Input.Search;
+const confirm = Modal.confirm;
 
 import SectionHeader from '../../../components/section-header'
 import StoreCard from '../../../components/store-card'
@@ -55,6 +56,32 @@ class Store extends React.PureComponent<StoreProps, any> {
         })
     }
 
+    showDeleteConfirm(id) {
+        let self = this
+        confirm({
+            title: '您确定要删除吗?',
+            content: '请谨慎操作',
+            okText: '确定',
+            okType: 'danger',
+            cancelText: '取消',
+            onOk() {
+                self.doDelete(id)
+            },
+            onCancel() { }
+        });
+    }
+
+    doDelete(id) {
+        // this.props.actions.delete_photo(id, (data, err) => {
+        //     if (data) {
+        //         message.success('删除成功')
+        //     }
+        //     if (err) {
+        //         message.error('删除失败')
+        //     }
+        // })
+    }
+
     renderModal() {
         return (
             <Row gutter={15}>
@@ -87,7 +114,7 @@ class Store extends React.PureComponent<StoreProps, any> {
                 return (
                     <Col key={index} className="gutter-row" span={6}>
                         <div className="gutter-box" style={{ marginBottom: '10px' }}>
-                            <StoreCard data={item} renderModal={this.showModal.bind(this)} />
+                            <StoreCard data={item} renderModal={this.showModal.bind(this)} doDelete={this.showDeleteConfirm.bind(this)} />
                         </div>
                     </Col>)
             })
@@ -118,6 +145,8 @@ class Store extends React.PureComponent<StoreProps, any> {
                     current={parseInt(this.props.page_num, 10) + 1}
                     pageSize={this.props.page_size} />
             )
+        } else {
+            return <div />
         }
     }
     render() {

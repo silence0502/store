@@ -5,6 +5,7 @@ import styles from './style/index.less';
 export interface StoreCardProps {
     data?: any
     renderModal?: any
+    doDelete?: any
 }
 class StoreCard extends React.Component<StoreCardProps, any> {
     renderModal() {
@@ -13,13 +14,19 @@ class StoreCard extends React.Component<StoreCardProps, any> {
             this.props.renderModal(id)
         }
     }
+    doDelete() {
+        let id = this.props.data.id
+        if (this.props.doDelete) {
+            this.props.doDelete(id)
+        }
+    }
     render() {
         let { data } = this.props;
         return (
             <div className={styles.store_card} >
                 <Card
                     cover={<img alt="example" src={data.img} onClick={this.renderModal.bind(this)} />}
-                    actions={[<Icon key="1" type="setting" />, <Icon key="2" type="edit" />, <Icon key="3" type="ellipsis" />]}
+                    actions={[<Icon key="1" type="delete" onClick={this.doDelete.bind(this)} />]}
                 >
                 </Card>
             </div>

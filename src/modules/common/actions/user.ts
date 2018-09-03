@@ -24,3 +24,17 @@ export const logout = (cb) => (dispatch) => {
         cb(null)
     }
 }
+
+export const touch = (user_id, cb) => (dispatch) => {
+    return userAPI.touch(user_id).then((res) => {
+        let action = { type: ActionTypes.COMMON_SAY_HELLO, currentUser: res.data }
+        dispatch(action);
+        if (cb) {
+            cb(res.data)
+        }
+    }).catch((err) => {
+        let action = { type: ActionTypes.COMMON_SAY_HELLO, currentUser: null }
+        dispatch(action);
+        cb(null)
+    })
+};

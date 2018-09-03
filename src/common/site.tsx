@@ -94,9 +94,18 @@ class Site extends React.Component<SiteProps, any> {
                     message.success(content, duration, onClose)
             }
         })
+        let user_info = JSON.parse(localStorage.getItem('user_info'))
         if (!matchPath('/login', { path: this.props.location.pathname })) {
-            let user_info = JSON.parse(localStorage.getItem('user_info'))
             this.props.actions.get_store_list(user_info.id)
+        }
+        if (!this.props.currentUser) {
+            if (this.props.location.pathname.indexOf('/login') < 0) {
+                this.props.actions.touch(user_info.id, (user) => {
+                    if (!user) {
+                        this.props.history.replace('/login')
+                    }
+                })
+            }
         }
     }
 
