@@ -1,7 +1,7 @@
 {
   "name": "store",
   "title": "门店",
-  "version": "1.1.0-20",
+  "version": "1.1.0-21",
   "description": "store",
   "scripts": {
     "start": "node ./tools/server.js",
