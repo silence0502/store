@@ -13,8 +13,11 @@ class UserAPI {
             },
         })
     }
-    touch(user_id) {
-        return axios.get(`/store_api/users/${user_id}`)
+    logout() {
+        return axios.get(`/store_api/logout`)
+    }
+    touch() {
+        return axios.get(`/store_api/users/touch`)
     }
 }
 

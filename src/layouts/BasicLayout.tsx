@@ -15,6 +15,7 @@ import { withRouter, matchPath } from 'react-router';
 
 export interface BasicLayoutProps {
   navClickHandler?
+  currentUser?
   exitHandler?
   menu?
   history?
@@ -38,7 +39,7 @@ export default class BasicLayout extends React.Component<BasicLayoutProps, any> 
   render() {
     return (
       <Layout className={styles['layout']}>
-        <HeaderBar navClickHandler={this.props.navClickHandler} exitHandler={this.props.exitHandler} activeKey={this.props.activeKey} />
+        <HeaderBar navClickHandler={this.props.navClickHandler} exitHandler={this.props.exitHandler} activeKey={this.props.activeKey} currentUser={this.props.currentUser} />
         <Layout className={styles['page-body']}>
           <Content className={styles['page-content']}>{this.props.children}
           </Content>

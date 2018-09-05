@@ -18,15 +18,20 @@ export const login = (params, cb) => (dispatch) => {
 };
 
 export const logout = (cb) => (dispatch) => {
-    let action = { type: ActionTypes.COMMON_SAY_HELLO, store_list: null }
-    dispatch(action);
-    if (cb) {
-        cb(null)
-    }
-}
+    return userAPI.logout().then((res) => {
+        let action = { type: ActionTypes.COMMON_SAY_HELLO, currentUser: null, store_list: null }
+        dispatch(action);
+        if (cb) {
+            cb()
+        }
+    }).catch((err) => {
+        let action = { type: ActionTypes.COMMON_SAY_HELLO, currentUser: null, store_list: null }
+        dispatch(action);
+    })
+};
 
-export const touch = (user_id, cb) => (dispatch) => {
-    return userAPI.touch(user_id).then((res) => {
+export const touch = (cb) => (dispatch) => {
+    return userAPI.touch().then((res) => {
         let action = { type: ActionTypes.COMMON_SAY_HELLO, currentUser: res.data }
         dispatch(action);
         if (cb) {

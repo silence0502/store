@@ -72,11 +72,10 @@ class Site extends React.Component<SiteProps, any> {
         }
     }
     exitHandler() {
-        this.props.actions.logout((store_list) => {
-            if (!store_list) {
+        this.props.actions.logout((currentUser) => {
+            if (!currentUser) {
                 emitter.emit('message', 'success', '退出成功')
                 this.props.history.push(`/login`)
-                localStorage.removeItem('user_info')
             }
         })
     }
@@ -94,15 +93,15 @@ class Site extends React.Component<SiteProps, any> {
                     message.success(content, duration, onClose)
             }
         })
-        let user_info = JSON.parse(localStorage.getItem('user_info'))
-        if (!matchPath('/login', { path: this.props.location.pathname })) {
-            this.props.actions.get_store_list(user_info.id)
-        }
         if (!this.props.currentUser) {
             if (this.props.location.pathname.indexOf('/login') < 0) {
-                this.props.actions.touch(user_info.id, (user) => {
+                this.props.actions.touch((user) => {
                     if (!user) {
                         this.props.history.replace('/login')
+                    } else {
+                        if (!matchPath('/login', { path: this.props.location.pathname }) && !this.props.store_list) {
+                            this.props.actions.get_store_list(user.id)
+                        }
                     }
                 })
             }
@@ -110,9 +109,8 @@ class Site extends React.Component<SiteProps, any> {
     }
 
     componentWillReceiveProps(nextProps: any) {
-        let user_info = JSON.parse(localStorage.getItem('user_info'))
-        if (!nextProps.store_list && user_info) {
-            this.props.actions.get_store_list(user_info.id)
+        if (!nextProps.store_list && nextProps.currentUser) {
+            this.props.actions.get_store_list(nextProps.currentUser.id)
         }
     }
     componentDidMount() {
@@ -155,6 +153,7 @@ class Site extends React.Component<SiteProps, any> {
                         activeKey={activeKey}
                         menu={menu}
                         exitHandler={this.exitHandler.bind(this)}
+                        currentUser={this.props.currentUser ? this.props.currentUser : ''}
                     >
                         {this.props.children}
                     </BasicLayout>

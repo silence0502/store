@@ -34,8 +34,6 @@ class HomeCls extends React.PureComponent<HomeProps, any> {
             if (!err) {
                 self.props.actions.login(values, (data) => {
                     if (data) {
-                        localStorage.setItem('user_info', JSON.stringify(data))
-                        // console.log(JSON.parse(localStorage.getItem('user_info')), '================================');
                         emitter.emit('message', 'success', '登录成功！')
                         this.props.history.replace(`/store/photo`)
                     } else {
