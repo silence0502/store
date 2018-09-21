@@ -14,6 +14,9 @@ class StoreAPI {
     photo_info(photo_id) {
         return axios.get(`/store_api/photos/${photo_id}`)
     }
+    report_info(photo_id) {
+        return axios.get(`/store_api/report/${photo_id}`)
+    }
     photo_delete(photo_id) {
         return axios.delete(`/store_api/photos/${photo_id}`)
     }

@@ -34,6 +34,22 @@ export const get_photo_info = (photo_id, cb) => (dispatch) => {
     })
 };
 
+export const get_report_info = (photo_id, cb) => (dispatch) => {
+    return storeAPI.report_info(photo_id).then((res) => {
+        let action = { type: ActionTypes.STORE_SAY_HELLO, report_info: res.data }
+        dispatch(action);
+        if (cb) {
+            cb(res.data)
+        }
+    }).catch((err) => {
+        let action = { type: ActionTypes.STORE_SAY_HELLO, report_info: null }
+        dispatch(action);
+        if (cb) {
+            cb(null)
+        }
+    })
+};
+
 export const delete_photo = (photo_id, cb) => (dispatch) => {
     return storeAPI.photo_delete(photo_id).then((res) => {
         let action = { type: ActionTypes.STORE_SAY_HELLO, id: photo_id }
@@ -47,3 +63,7 @@ export const delete_photo = (photo_id, cb) => (dispatch) => {
         }
     })
 };
+
+export const reset_report_info = () => (dispatch) => {
+    return dispatch({ type: ActionTypes.STORE_SAY_HELLO, report_info: null })
+}

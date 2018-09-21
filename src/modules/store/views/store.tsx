@@ -21,6 +21,7 @@ export interface StoreProps {
     goPage?
     page_size?
     page_num?
+    report_info?
 }
 class Store extends React.PureComponent<StoreProps, any> {
     constructor(props: any) {
@@ -46,12 +47,15 @@ class Store extends React.PureComponent<StoreProps, any> {
         this.setState({
             visible: false,
         });
+        this.props.actions.reset_report_info()
     }
 
     showModal(id) {
         this.props.actions.get_photo_info(id, () => {
-            this.setState({
-                visible: true,
+            this.props.actions.get_report_info(id, () => {
+                this.setState({
+                    visible: true,
+                })
             })
         })
     }
@@ -81,7 +85,22 @@ class Store extends React.PureComponent<StoreProps, any> {
         //     }
         // })
     }
-
+    renderReportInfo() {
+        let { report_info } = this.props
+        if (report_info && report_info.length > 0) {
+            return (
+                report_info.map((item, index) => {
+                    return (
+                        <p>第{item.num}张图的坐标为（{item.left}, {item.top}）,形状为{item.quality}</p>
+                    )
+                })
+            )
+        } else {
+            return (
+                <p>这是对该图片的描述</p>
+            )
+        }
+    }
     renderModal() {
         return (
             <Row gutter={15}>
@@ -92,7 +111,7 @@ class Store extends React.PureComponent<StoreProps, any> {
                 </Col>
                 <Col className="gutter-row" span={12}>
                     <div className="gutter-box">
-                        <p>这是对该图片的描述</p>
+                        {this.renderReportInfo()}
                     </div>
                 </Col>
             </Row>

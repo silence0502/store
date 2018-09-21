@@ -9,6 +9,7 @@ function mapProps(state) {
     return {
         name: state.storeReducer.name,
         photo_info: state.storeReducer.photo_info,
+        report_info: state.storeReducer.report_info,
     }
 }
 function mapDispatchToProps(dispatch) {
