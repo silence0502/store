@@ -21,16 +21,16 @@ class Home extends React.Component<any, any> {
         let { store_list } = this.props
         this.state = {
             listLoading: false,
-            store: store_list[0].id.toString(),
+            store_num: store_list[0].id.toString(),
             page_num: page_num ? page_num : 0,
             page_size: 8,
         }
     }
     goPage(current) {
         let page_num = current - 1
-        let { page_size, store } = this.state
+        let { page_size, store_num } = this.state
         let queryObj = {
-            page_num, page_size, store
+            page_num, page_size, store_num
         }
         this.props.history.push(`/store/photo?${stringify({ page_num })}`)
         this.setState({
@@ -43,8 +43,8 @@ class Home extends React.Component<any, any> {
             listLoading: true
         });
         let self = this
-        let { store, page_num, page_size } = queryObj
-        this.props.actions.get_photo_list({ store, page_num, page_size }, () => {
+        let { store_num, page_num, page_size } = queryObj
+        this.props.actions.get_photo_list({ store_num, page_num, page_size }, () => {
             self.setState({
                 listLoading: false
             });
@@ -56,23 +56,23 @@ class Home extends React.Component<any, any> {
     }
 
     componentWillMount() {
-        let { store, page_num, page_size } = this.state
+        let { store_num, page_num, page_size } = this.state
         let queryObj = {
-            store, page_num, page_size
+            store_num, page_num, page_size
         }
         this.getDataFn(queryObj)
     }
     handleClick(e) {
         let { page_size } = this.state
-        let store = e.key
+        let store_num = e.key
         let page_num = 0
         let queryObj = {
-            store, page_num, page_size
+            store_num, page_num, page_size
         }
         this.props.history.push(`/store/photo?${stringify({ page_num })}`)
         this.getDataFn(queryObj)
         this.setState({
-            store: e.key,
+            store_num: e.key,
             page_num: 0
         })
     }
@@ -89,7 +89,7 @@ class Home extends React.Component<any, any> {
         )
     }
     renderLeftNav() {
-        let pathKey = this.state.store
+        let pathKey = this.state.store_num
         return (
             <Menu defaultSelectedKeys={pathKey} mode="inline" onClick={this.handleClick.bind(this)}>
                 {this.renderMenuItem()}
@@ -97,8 +97,8 @@ class Home extends React.Component<any, any> {
         )
     }
     render() {
-        let { match, photo_list } = this.props
-        let { listLoading, page_num, page_size } = this.state
+        let { match } = this.props
+        let { listLoading, page_num, page_size, store_num } = this.state
         return (
             <Row className={styles.resource}>
                 <SplitPane
@@ -111,13 +111,13 @@ class Home extends React.Component<any, any> {
                     <div className={styles.main} style={{ minHeight: window.innerHeight - 104 }}>
                         <Switch>
                             <Redirect from={`${match.url}`} to={`${match.url}/photo`} exact />
-                            <Route path={`${match.url}/photo`} render={(props) => <Store {...{ photo_list, listLoading, page_num, page_size }} goPage={this.goPage.bind(this)} />} />
+                            <Route path={`${match.url}/photo`} render={(props) => <Store {...{ store_num, listLoading, page_num, page_size }} goPage={this.goPage.bind(this)} />} />
                             <Route path={`${match.url}/statistics`} render={() => <Charts />} />
                         </Switch>
                     </div>
                 </SplitPane>
             </Row >
-        );
+        )
     }
 }
 

@@ -22,6 +22,7 @@ export interface StoreProps {
     goPage?
     page_size?
     page_num?
+    store_num?
     report_info?
 }
 class Store extends React.PureComponent<StoreProps, any> {
@@ -77,10 +78,15 @@ class Store extends React.PureComponent<StoreProps, any> {
     }
 
     doDelete(id) {
+        let { photo_list, page_num, page_size, store_num } = this.props
         this.props.actions.delete_photo(id, (err, data) => {
             if (data) {
                 message.success('删除成功')
-                window.location.reload()
+                if (photo_list.row.length === 1) {
+                    this.props.actions.get_photo_list(store_num, page_num - 1, page_size)
+                } else {
+                    this.props.actions.get_photo_list(store_num, page_num, page_size)
+                }
             }
             if (err) {
                 message.error('删除失败')
