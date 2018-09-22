@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as _ from 'lodash';
 
 import { Pagination, Input, Row, Col, Modal, Spin, message } from 'antd';
 const Search = Input.Search;
@@ -88,12 +89,22 @@ class Store extends React.PureComponent<StoreProps, any> {
     renderReportInfo() {
         let { report_info } = this.props
         if (report_info && report_info.length > 0) {
+            report_info.map((item, index) => {
+                item.num = parseInt(item.num, 10);
+            })
+            let new_arr = _.orderBy(report_info, ['num', 'type'], ['asc', 'asc'])
+            let new_q = '';
+            for (let i = 0; i < new_arr.length; i++) {
+                new_q += '第' + new_arr[i].num + '张图的坐标为（' + new_arr[i].left + ',' + new_arr[i].top + '）,形状为' + new_arr[i].quality
+                for (let j = i + 1; j < new_arr.length; j++) {
+                    if (new_arr[j].num === new_arr[i].num) {
+                        new_q = new_q + ',尺寸为' + new_arr[j].quality + '。 \n'
+                    }
+                }
+                i++
+            }
             return (
-                report_info.map((item, index) => {
-                    return (
-                        <p>第{item.num}张图的坐标为（{item.left}, {item.top}）,形状为{item.quality}</p>
-                    )
-                })
+                <pre>{new_q}</pre>
             )
         } else {
             return (
@@ -189,7 +200,7 @@ class Store extends React.PureComponent<StoreProps, any> {
                             bodyStyle={{
                                 height: '100%'
                             }}
-                            width={700}
+                            width={window.innerWidth - 500}
                             visible={this.state.visible}
                             onOk={this.handleOk}
                             onCancel={this.handleCancel}
