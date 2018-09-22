@@ -30,6 +30,8 @@ class Store extends React.PureComponent<StoreProps, any> {
         super(props);
         this.state = {
             visible: false,
+            _refWidth: 0,
+            _refHeight: 0
         };
     }
 
@@ -119,12 +121,40 @@ class Store extends React.PureComponent<StoreProps, any> {
             )
         }
     }
+    renderNumber() {
+        let { report_info } = this.props
+        setTimeout(() => {
+            let _imgDom = this.refs.modelImg
+            if (_imgDom) {
+                this.setState({
+                    _refWidth: _imgDom.clientWidth / 2592,
+                    _refHeight: _imgDom.clientHeight / 1520
+
+                })
+            }
+        }, 500)
+        if (this.state._refWidth && this.state._refHeight) {
+            if (report_info && report_info.length > 0) {
+                let fmtInfo = _.uniqBy(report_info, 'num')
+                return fmtInfo.map((item, index) => {
+                    let width = parseInt(item.width, 10) * this.state._refWidth, height = parseInt(item.height, 10) * this.state._refHeight
+                    return <div key={index} style={{
+                        position: 'absolute', top: parseInt(item.top, 10) * this.state._refWidth, left: parseInt(item.left, 10) * this.state._refHeight,
+                        width: width, height: height, border: '1px solid #E50514', fontSize: '20px',
+                        display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#e50514'
+                    }}>{item.num}</div>
+                })
+
+            }
+        }
+    }
     renderModal() {
         return (
             <Row gutter={15}>
                 <Col className="gutter-row" span={12}>
-                    <div className="gutter-box">
+                    <div ref="modelImg" className="gutter-box" style={{ position: 'relative' }}>
                         <img alt="example" src={this.props.photo_info.img} style={{ width: '100%', height: '100%' }} />
+                        {this.renderNumber()}
                     </div>
                 </Col>
                 <Col className="gutter-row" span={12}>
