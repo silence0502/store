@@ -77,14 +77,15 @@ class Store extends React.PureComponent<StoreProps, any> {
     }
 
     doDelete(id) {
-        // this.props.actions.delete_photo(id, (data, err) => {
-        //     if (data) {
-        //         message.success('删除成功')
-        //     }
-        //     if (err) {
-        //         message.error('删除失败')
-        //     }
-        // })
+        this.props.actions.delete_photo(id, (err, data) => {
+            if (data) {
+                message.success('删除成功')
+                window.location.reload()
+            }
+            if (err) {
+                message.error('删除失败')
+            }
+        })
     }
     renderReportInfo() {
         let { report_info } = this.props
