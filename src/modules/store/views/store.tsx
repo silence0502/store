@@ -131,7 +131,7 @@ class Store extends React.PureComponent<StoreProps, any> {
         if (this.state._refWidth && this.state._refHeight) {
             if (report_info && report_info.length > 0) {
                 let fmtInfo = _.uniqBy(report_info, 'num')
-                return fmtInfo.map((item, index) => {
+                return fmtInfo.map((item: any, index) => {
                     let width = parseInt(item.width, 10) * this.state._refWidth, height = parseInt(item.height, 10) * this.state._refHeight
                     return <div key={index} style={{
                         position: 'absolute', top: parseInt(item.top, 10) * this.state._refWidth, left: parseInt(item.left, 10) * this.state._refHeight,
@@ -174,7 +174,6 @@ class Store extends React.PureComponent<StoreProps, any> {
     }
     renderImpurity() {
         let { impurity_info } = this.props
-        console.log(impurity_info);
         setTimeout(() => {
             let _imgDom: any = this.refs.modelImg
             if (_imgDom) {
