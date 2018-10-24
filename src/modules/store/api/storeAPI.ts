@@ -20,6 +20,9 @@ class StoreAPI {
     photo_delete(photo_id) {
         return axios.delete(`/store_api/photos/${photo_id}`)
     }
+    impurity_info(photo_id) {
+        return axios.get(`/store_api/report_impurity/${photo_id}`)
+    }
 }
 
 export default new StoreAPI();

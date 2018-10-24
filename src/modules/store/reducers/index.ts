@@ -8,12 +8,14 @@ class StoreState {
     photo_list: Object
     photo_info: Object
     report_info: Object
+    impurity_info: Object
     constructor() {
         this.name = 'STORE'
         this.store_list = {}
         this.photo_list = {}
         this.photo_info = {}
         this.report_info = []
+        this.impurity_info = []
     }
 }
 

@@ -17,9 +17,9 @@
     "dump": "npm run release  -- --prerelease",
     "pub": "./node_modules/.bin/gulp --gulpfile ./tools/gulpfile.js deploy"
   },
-  "pre-commit": [
-    "lint"
-  ],
+  // "pre-commit": [
+  //   "lint"
+  // ],
   "standard-version": {
     "skip": {
       "changelog": false,
