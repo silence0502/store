@@ -24,6 +24,7 @@ export interface StoreProps {
     page_num?
     doDelete?
     report_info?
+    impurity_info?
 }
 class Store extends React.PureComponent<StoreProps, any> {
     constructor(props: any) {
@@ -31,7 +32,9 @@ class Store extends React.PureComponent<StoreProps, any> {
         this.state = {
             visible: false,
             _refWidth: 0,
-            _refHeight: 0
+            _refHeight: 0,
+            impurityWidth: 0,
+            impurityHeight: 0
         };
     }
 
@@ -52,9 +55,11 @@ class Store extends React.PureComponent<StoreProps, any> {
             visible: false,
         });
         this.props.actions.reset_report_info()
+        this.props.actions.reset_impurity_info()
     }
 
     showModal(id) {
+        this.props.actions.get_impurity_info(id);
         this.props.actions.get_photo_info(id, () => {
             this.props.actions.get_report_info(id, () => {
                 this.setState({
@@ -110,6 +115,7 @@ class Store extends React.PureComponent<StoreProps, any> {
             )
         }
     }
+
     renderNumber() {
         let { report_info } = this.props
         setTimeout(() => {
@@ -137,6 +143,63 @@ class Store extends React.PureComponent<StoreProps, any> {
             }
         }
     }
+
+    // arrayRepect(array) {
+    //     let new_arr = array;
+    //     for (let i = 0; i < array.length; i++) {
+    //         for (let j = i + 1; j < array.length; j++) {
+    //             if (((array[i].left + array[i].width) / (array[j].left + array[j].width) > 0.85 &&
+    //                 (array[i].left + array[i].width) / (array[j].left + array[j].width) < 1.1) &&
+    //                 ((array[i].top + array[i].height) / (array[j].top + array[j].height) > 0.85 &&
+    //                     (array[i].top + array[i].height) / (array[j].top + array[j].height)) < 1.1) {
+    //                 new_arr.splice(j, 1)
+    //             }
+    //         }
+    //     }
+    //     return new_arr;
+    // }
+    arrayRepect(array) {
+        let new_arr = array;
+        for (let i = 0; i < array.length; i++) {
+            for (let j = i + 1; j < array.length; j++) {
+                if ((array[i].left / array[j].left > 0.85 &&
+                    array[i].left / array[j].left < 1.1) &&
+                    (array[i].top / array[j].top > 0.85 &&
+                        array[i].top / array[j].top) < 1.1) {
+                    new_arr.splice(j, 1)
+                }
+            }
+        }
+        return new_arr;
+    }
+    renderImpurity() {
+        let { impurity_info } = this.props
+        console.log(impurity_info);
+        setTimeout(() => {
+            let _imgDom: any = this.refs.modelImg
+            if (_imgDom) {
+                this.setState({
+                    _refWidth: _imgDom.clientWidth / 2592,
+                    _refHeight: _imgDom.clientHeight / 1520
+
+                })
+            }
+        }, 500)
+        if (this.state._refWidth && this.state._refHeight) {
+            if (impurity_info && impurity_info.length > 0) {
+                let array = this.arrayRepect(impurity_info)
+                return array.map((item, index) => {
+                    let width = parseInt(item.width, 10) * this.state._refWidth, height = parseInt(item.height, 10) * this.state._refHeight
+                    return <div key={index} style={{
+                        position: 'absolute', top: parseInt(item.top, 10) * this.state._refWidth, left: parseInt(item.left, 10) * this.state._refHeight,
+                        width: width, height: height, border: '1px solid #000', fontSize: '20px'
+                    }}></div>
+                })
+
+            }
+        }
+    }
+
     renderModal() {
         return (
             <Row gutter={15}>
@@ -144,6 +207,7 @@ class Store extends React.PureComponent<StoreProps, any> {
                     <div ref="modelImg" className="gutter-box" style={{ position: 'relative' }}>
                         <img alt="example" src={this.props.photo_info.img} style={{ width: '100%', height: '100%' }} />
                         {this.renderNumber()}
+                        {this.renderImpurity()}
                     </div>
                 </Col>
                 <Col className="gutter-row" span={12}>
