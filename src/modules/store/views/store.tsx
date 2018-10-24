@@ -22,6 +22,7 @@ export interface StoreProps {
     goPage?
     page_size?
     page_num?
+    doDelete?
     report_info?
 }
 class Store extends React.PureComponent<StoreProps, any> {
@@ -79,14 +80,9 @@ class Store extends React.PureComponent<StoreProps, any> {
     }
 
     doDelete(id) {
-        // this.props.actions.delete_photo(id, (data, err) => {
-        //     if (data) {
-        //         message.success('删除成功')
-        //     }
-        //     if (err) {
-        //         message.error('删除失败')
-        //     }
-        // })
+        if (this.props.doDelete) {
+            this.props.doDelete(id)
+        }
     }
     renderReportInfo() {
         let { report_info } = this.props
@@ -117,7 +113,7 @@ class Store extends React.PureComponent<StoreProps, any> {
     renderNumber() {
         let { report_info } = this.props
         setTimeout(() => {
-            let _imgDom = this.refs.modelImg
+            let _imgDom: any = this.refs.modelImg
             if (_imgDom) {
                 this.setState({
                     _refWidth: _imgDom.clientWidth / 2592,
