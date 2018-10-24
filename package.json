@@ -7,7 +7,7 @@
     "start": "node ./tools/server.js",
     "prebuild": "npm run dump",
     "build": "node ./tools/build.js",
-    // "lint": "tslint \"src/**/*.@(ts|tsx)\"",
+    "lint": "tslint \"src/**/*.@(ts|tsx)\"",
     "test": "karma start",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
